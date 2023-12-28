@@ -115,25 +115,22 @@
 						<table class="table">
 						  <thead class="thead-primary">
 						    <tr>
-						    	<th>&nbsp;</th>
-						    	<th style="text-align: center; vertical-align: middle;">Image</th>
-						    	<th style="text-align: center; vertical-align: middle;">Sản Phẩm</th>
-                                <th style="text-align: center; vertical-align: middle;">Giá Bán</th>
-                                <th style="text-align: center; vertical-align: middle;">Số Lượng</th>
-                                <th style="text-align: center; vertical-align: middle;">Tổng Tiền</th>
-                                <th style="text-align: center; vertical-align: middle;">Chức Năng</th>
+                    <th>STT</th>
+                    <th style="text-align: center; vertical-align: middle;">Image</th>
+                    <th style="text-align: center; vertical-align: middle;">Sản Phẩm</th>
+                    <th style="text-align: center; vertical-align: middle;">Giá Bán</th>
+                    <th style="text-align: center; vertical-align: middle; ">Số Lượng</th>
+                    <th style="text-align: center; vertical-align: middle;">Tổng Tiền</th>
+                    <th style="text-align: center; vertical-align: middle;"></th>
 						    </tr>
 						  </thead>
                           
-                          <% productDetails.forEach(function(spDetailCart) { %>
+                          <% productDetails.forEach(function(spDetailCart, index) { %>
                             
 						  <tbody>
 						    <tr class="alert" role="alert">
-						    	<td>
-						    		<label class="checkbox-wrap checkbox-primary">
-										  <input type="checkbox" checked>
-										  <span class="checkmark"></span>
-										</label>
+						    	<td style="font-size: 20px;">
+                    <%= index + 1 %>
 						    	</td>
 						    	<td>
 						    		<div class="img" style="background-image: url('images/upload/<%= getRelativeImagePath(spDetailCart.productDetails.Image) %>');"></div>
@@ -146,23 +143,23 @@
                                 </td>
                                 <td style="font-size: 20px;"><%= formatCurrency(spDetailCart.productDetails.GiaBan) %></td>
                                 <td  class="quantity">
-                                    <div class="input-group" style="display: flex; justify-content: space-between;align-items: center; width: 150px; ">
-                                        <span class="input-group-btn mr-2">
+                                    <div class="input-group" style="display: flex; justify-content: space-between;align-items: center; width: 80px; ">
+                                        <!-- <span class="input-group-btn mr-2">
                                             <button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
                                                 <i class="fa fa-minus"></i>
                                             </button>
-                                        </span>
+                                        </span> -->
                                         <input disabled style="font-size: 20px;display: flex;align-items: center;justify-content: center;" type="text" id="quantity" name="quantity" class="quantity form-control input-number" value="<%= spDetailCart.qty %>" min="1" max="100">
-                                        <span class="input-group-btn ml-2">
+                                        <!-- <span class="input-group-btn ml-2">
                                             <button type="button" class="quantity-right-plus btn"  data-type="plus" data-field="">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                        </span>
+                                        </span> -->
                                        
                                     </div>
-				                </td>
+				                        </td>
 				                <td style="font-size: 20px;"><%= formatCurrency(spDetailCart.productDetails.GiaBan * spDetailCart.qty ) %></td>
-                                <td>
+                                <td style="text-align: center; vertical-align: middle;"> 
                                     <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true"><i class="fa fa-close"></i></span>
                                     </button> -->
@@ -173,7 +170,8 @@
                                     <!-- </br></br>           -->
                                     <form action="/delete-detail-cart" method="post" style="display: inline;">
                                         <input type="hidden" name="idARemove" value="<%= spDetailCart._id %>">
-                                        <button class="btn btn-danger button-SUA-XOA" >DELETE</button>
+                                        <!-- <button class="btn btn-danger button-SUA-XOA" >DELETE</button> -->
+                                        <button class="close" aria-label="Close" ><i class="fa fa-close"></i></button>
                                     </form>
                                 </td>
 						    </tr>
