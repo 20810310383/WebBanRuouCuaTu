@@ -173,9 +173,10 @@
                                 <th style="width: 150px;text-align: center; vertical-align: middle;">Tên SP</th>
                                 <th style="text-align: center; vertical-align: middle;">Giá mới</th>
                                 <th style="text-align: center; vertical-align: middle;">Giá cũ</th>
+                                <th style="text-align: center; vertical-align: middle;">Loại SP</th>
                                 <th style="text-align: center; vertical-align: middle;">Tồn kho</th>
                                 <th style="text-align: center; vertical-align: middle;">Đã bán</th>
-                                <th style="text-align: center; vertical-align: middle;">Lượt đánh giá</th>
+                                <!-- <th style="text-align: center; vertical-align: middle;">Lượt đánh giá</th> -->
                                 <th style="text-align: center; vertical-align: middle;">Sale New</th>
                                 <th style="width: 250px; text-align: center; vertical-align: middle; ">Mô tả</th>
                                 <th style="text-align: center; vertical-align: middle;">Hình Ảnh</th>
@@ -185,15 +186,16 @@
                             <tbody>
                              
                                   <!-- Hiển thị all sản phẩm  -->
-                                  <% sanpham.forEach(function(allsp) { %>  
+                                  <% sanpham.forEach(function(allsp, index) { %>  
                                       <tr style="font-weight: bold; color: #180766; font-size: 18px; text-align: center;">                                            
                                           <!-- <td>id</td> -->
                                           <td><%= allsp.TenSP %></td>
                                           <td><%= formatCurrency(allsp.GiaBan) %></td>                                  
-                                          <td><%= formatCurrency(allsp.GiaCu) %></td>                                  
+                                          <td><%= formatCurrency(allsp.GiaCu) %></td> 
+                                          <td><%= hienthi_tenLoaiSP[index] %></td>                                    
                                           <td><%= allsp.SoLuongTon %></td>                                  
                                           <td><%= allsp.SoLuongBan %></td>                                  
-                                          <td><%= allsp.SoLuotDanhGia %></td>                                  
+                                          <!-- <td><%= allsp.SoLuotDanhGia %></td>-->
                                           <td><%= allsp.Sale_New %></td>                                  
                                           <td style=" padding: 10px;"><%= allsp.MoTa %></td>                                  
                                           <td style="text-align: center; vertical-align: middle;">

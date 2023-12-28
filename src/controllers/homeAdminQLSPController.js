@@ -80,24 +80,11 @@ module.exports = {
         }
 
         // -----------------  hien thi loai sp  -----------------    
+        let sanpham = await SanPham.find({}).skip(skip).limit(limit).populate('IdLoaiSP').exec();
+        console.log("TenLoaiSP:", sanpham);
 
-        let sanpham = await SanPham.find().populate('IdLoaiSP').exec();
-        console.log("TenLoaiSP:",sanpham);
-
-        let idLoaiSPArray = sanpham.map(item => item.IdLoaiSP._id);
-        console.log("idLoaiSPArray:", idLoaiSPArray);
-        
-        let tenLoaiSPArray = [];
-        for (let i = 0; i < idLoaiSPArray.length; i++) {
-            let idloaiSP = await LoaiSP.findOne({ _id: idLoaiSPArray[i] }).exec();
-            // console.log("idloaiSP[]: ", idloaiSP);
-            // tenLoaiSPArray.push(idloaiSP.TenLoaiSP);
-            tenLoaiSPArray.push(idloaiSP.TenLoaiSP);
-            console.log("ten loai sp:", tenLoaiSPArray[i]);
-        }
-
-        let hienthi_tenLoaiSP = tenLoaiSPArray.map(e => e)
-        console.log("hienthi_tenLoaiSP:",hienthi_tenLoaiSP);
+        let hienthi_tenLoaiSP = sanpham.map(item => item.IdLoaiSP.TenLoaiSP);
+        console.log("hienthi_tenLoaiSP:", hienthi_tenLoaiSP);
 
         res.render("User_Admin/homeQLSanPham.ejs", {
             soTrang: numPage, 
@@ -158,6 +145,14 @@ module.exports = {
             const relativePath = absolutePath ? absolutePath.replace(rootPath, '').replace(/\\/g, '/').replace(/^\/?images\/upload\//, '') : '';
             return relativePath;
         }
+
+        // -----------------  hien thi loai sp  -----------------    
+        let sanpham = await SanPham.find({}).skip(skip).limit(limit).populate('IdLoaiSP').exec();
+        console.log("TenLoaiSP:", sanpham);
+
+        let hienthi_tenLoaiSP = sanpham.map(item => item.IdLoaiSP.TenLoaiSP);
+        console.log("hienthi_tenLoaiSP:", hienthi_tenLoaiSP);
+
         res.render("User_Admin/SearchQLSP.ejs", {
             soTrang: numPage, 
             curPage: page, 
@@ -166,7 +161,8 @@ module.exports = {
             rootPath: '/', 
             formatCurrency: formatCurrency,
             getRelativeImagePath: getRelativeImagePath,
-            sanpham: timKiemSP
+            sanpham: timKiemSP,
+            hienthi_tenLoaiSP
         })
     },
 
