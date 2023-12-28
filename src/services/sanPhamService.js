@@ -1,5 +1,6 @@
 const path = require('path');
 const aqp = require('api-query-params')
+const TaiKhoan_Admin = require("../models/TaiKhoan_Admin")
 const SanPham = require("../models/SanPham")
 const LoaiSP = require("../models/LoaiSP")
 
@@ -18,6 +19,25 @@ module.exports = {
                 SoLuongTon: spData.SoLuongTon,
                 SoLuongBan: spData.SoLuongBan,
                 Image: spData.Image   
+            })
+    
+            return kq
+    
+        } catch(error) {
+             console.log("er: ", error);
+             return null
+        } 
+
+    },
+
+    createTaiKhoanAdminService: async (spData) => {
+
+        try{
+
+            let kq = await TaiKhoan_Admin.create({
+                TenDangNhap: spData.TenDangNhap,
+                MatKhau: spData.MatKhau,
+                HoTen: spData.HoTen, 
             })
     
             return kq

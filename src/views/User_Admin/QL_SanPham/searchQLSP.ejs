@@ -52,7 +52,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <%- include("../User_Admin/partials_admin/sidebar_navbar.ejs") %>
+        <%- include("../partials_admin/sidebar_navbar.ejs") %>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -62,7 +62,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <%- include("../User_Admin/partials_admin/header_navbar.ejs") %>
+                <%- include("../partials_admin/header_navbar.ejs") %>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -169,7 +169,7 @@
                         <table class="table table-hover">
                             <thead>                                
                               <tr style="background-color: #DC143C; color: white; font-size: 18px; ">
-                                <th style="width: 10px;text-align: center; vertical-align: middle;"></th>
+                                <!-- <th style="width: 10px;text-align: center; vertical-align: middle;">ID</th> -->
                                 <th style="width: 150px;text-align: center; vertical-align: middle;">Tên SP</th>
                                 <th style="text-align: center; vertical-align: middle;">Giá mới</th>
                                 <th style="text-align: center; vertical-align: middle;">Giá cũ</th>
@@ -186,42 +186,35 @@
                             <tbody>
                              
                                   <!-- Hiển thị all sản phẩm  -->
-                                  <% sanpham.forEach(function(allsp, index) { %>                                                                                                                
-                                    
+                                  <% sanpham.forEach(function(allsp, index) { %>  
                                       <tr style="font-weight: bold; color: #180766; font-size: 18px; text-align: center;">                                            
-                                          <td>
-                                            <!-- get id của loại sp -->
-                                            <input type="hidden" name="idAn" value="<%= allsp.IdLoaiSP._id %>">
-                                            
-                                          </td>
+                                          <!-- <td>id</td> -->
                                           <td><%= allsp.TenSP %></td>
                                           <td><%= formatCurrency(allsp.GiaBan) %></td>                                  
-                                          <td><%= formatCurrency(allsp.GiaCu) %></td>   
-                                                                                   
-                                          <td><%= hienthi_tenLoaiSP[index] %></td>                            
-                                                                                        
+                                          <td><%= formatCurrency(allsp.GiaCu) %></td> 
+                                          <td><%= hienthi_tenLoaiSP[index] %></td>                                    
                                           <td><%= allsp.SoLuongTon %></td>                                  
                                           <td><%= allsp.SoLuongBan %></td>                                  
-                                          <!-- <td><%= allsp.SoLuotDanhGia %></td>                                   -->
+                                          <!-- <td><%= allsp.SoLuotDanhGia %></td>-->
                                           <td><%= allsp.Sale_New %></td>                                  
                                           <td style=" padding: 10px;"><%= allsp.MoTa %></td>                                  
                                           <td style="text-align: center; vertical-align: middle;">
                                               <img style="height: 150px; width: 150px;" src="images/upload/<%= getRelativeImagePath(allsp.Image) %>" class="img-fluid" alt="Image">
                                           </td>                                  
                                           <td style="text-align: center; vertical-align: middle;">
-                                              <a 
-                                                  class="btn btn-success button-SUA-XOA" 
-                                                  href="/update-sp?idUpdateSp=<%= allsp._id %>">Chỉnh Sửa</a>   
-                                                  
-                                              <form action="/delete-sp" method="post" style="display: inline;">
-                                                    <input type="hidden" name="idRemove" value="<%= allsp._id %>">
-                                                    <button class="btn btn-danger button-SUA-XOA" >DELETE</button>
-                                              </form>
-                                          </td>                                  
+                                            <a 
+                                                class="btn btn-success button-SUA-XOA" 
+                                                href="/update-sp?idUpdateSp=<%= allsp._id %>">Chỉnh Sửa</a>   
+                                                
+                                            <form action="/delete-sp" method="post" style="display: inline;">
+                                                  <input type="hidden" name="idRemove" value="<%= allsp._id %>">
+                                                <button class="btn btn-danger button-SUA-XOA" >DELETE</button>
+                                            </form>
+                                        </td>                                  
                                       </tr>
-                                     
-                                    <% }); %>                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                     
+                                    <% }); %>
+                                  
+                             
                             </tbody>
                           </table>
                     </div>                    
@@ -236,7 +229,7 @@
                           const next = curPage >= soTrang ? curPage : parseInt(curPage) + 1            
                         %>
                             <li class="page-item">
-                                <a class="page-link" style=" font-weight: bolder;" href="/home-qlsp?page=<%=pre%>">
+                                <a class="page-link" style=" font-weight: bolder;" href="/searchQlsp?page=<%=pre%>">
                                     &lt;
                                 </a>
                             </li>
@@ -244,13 +237,13 @@
                             var active="" ; 
                             if(i == curPage) active="active" ; %>
                             <li class="page-item <%=active%>">
-                                <a class="page-link" style="font-size: 18px; font-weight: bolder;"  href="/home-qlsp?page=<%=i%>">
+                                <a class="page-link" style="font-size: 18px; font-weight: bolder;"  href="/searchQlsp?page=<%=i%>">
                                     <%=i%>                          
                                 </a>
                             </li>                
                         <% } %>                                                      
                             <li class="page-item">
-                                <a class="page-link" style=" font-weight: bolder;" href="/home-qlsp?page=<%=next%>">
+                                <a class="page-link" style=" font-weight: bolder;" href="/searchQlsp?page=<%=next%>">
                                     &gt;
                                 </a>
                             </li>                     
@@ -300,8 +293,6 @@
             </div>
         </div>
     </div>
-
-    
 
     <!-- Bootstrap core JavaScript-->
     <script src="User_Admin/vendor/jquery/jquery.min.js"></script>

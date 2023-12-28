@@ -116,7 +116,7 @@
                             <h4 class="product-select">Chọn loại sản phẩm</h4>
                             <form action="/search-sp1" method="get" style="margin: 0; padding: 0;">
                                 <select class="selectpicker"  name="searchSP1">
-                                    <option></option>
+                                    <option><%= searchSP1 %></option>
                                     <% loaiSP.forEach(function(loaiSP) { %>
                                     <option><%=loaiSP.TenLoaiSP %></option>
                                     <% }); %> 

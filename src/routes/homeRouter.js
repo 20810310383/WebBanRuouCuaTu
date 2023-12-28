@@ -64,6 +64,19 @@ const {
     
 } = require("../controllers/addToCartController")
 
+const {
+    getHomePhanTrang_TKAdmin,
+    getHomeQL_TKAdmin,
+    gethomeSearchQL_TKAdmin,
+    getSearchQL_TKAdmin,
+    remove_TKAdmin,
+    hienThiFormCreate_TKAdmin,
+    postCreate_TKAdmin,
+    hienThiFormUpdate_TKAdmin,
+    postUpdate_TKAdmin
+
+} = require("../controllers/homeAdminQLTKAdmin")
+
 const router = express.Router();
 //  -------------------------------------------
 
@@ -143,6 +156,28 @@ router.get('/cart-info', getCartInfo)
 router.get('/detail-cart', getCTCart)
 // xóa 1 san pham trong chi tiet cart
 router.post('/delete-detail-cart', removeACTCart)
+
+
+// quan ly tai khoan admin
+router.get("/home-qltk-admin", getHomeQL_TKAdmin)
+// khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
+router.get("/home-qltk-admin", getHomePhanTrang_TKAdmin)
+// form search quan ly tai khoan admin
+router.get("/searchQL_TKAdmin", getSearchQL_TKAdmin)
+// khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
+router.get("/searchQL_TKAdmin", gethomeSearchQL_TKAdmin)
+// xoa tai khoan admin
+router.post("/delete-taikhoan-admin", remove_TKAdmin)
+
+// hien thi form create tai khoan admin
+router.get("/create-taikhoan-admin", hienThiFormCreate_TKAdmin)
+// insert tai khoan admin
+router.post("/create-taikhoan-admin", postCreate_TKAdmin)
+
+// hien thi form update tai khoan admin
+router.get("/update-taikhoan-admin", hienThiFormUpdate_TKAdmin)
+// update tai khoan admin
+router.post("/update-taikhoan-admin", postUpdate_TKAdmin)
 
 
 module.exports = router;

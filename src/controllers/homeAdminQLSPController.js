@@ -86,7 +86,7 @@ module.exports = {
         let hienthi_tenLoaiSP = sanpham.map(item => item.IdLoaiSP.TenLoaiSP);
         console.log("hienthi_tenLoaiSP:", hienthi_tenLoaiSP);
 
-        res.render("User_Admin/homeQLSanPham.ejs", {
+        res.render("User_Admin/QL_SanPham/homeQLSanPham.ejs", {
             soTrang: numPage, 
             curPage: page, 
             logIn: loggedIn, 
@@ -153,7 +153,7 @@ module.exports = {
         let hienthi_tenLoaiSP = sanpham.map(item => item.IdLoaiSP.TenLoaiSP);
         console.log("hienthi_tenLoaiSP:", hienthi_tenLoaiSP);
 
-        res.render("User_Admin/SearchQLSP.ejs", {
+        res.render("User_Admin/QL_SanPham/searchQLSP.ejs", {
             soTrang: numPage, 
             curPage: page, 
             logIn: loggedIn, 
@@ -207,7 +207,7 @@ module.exports = {
             const relativePath = absolutePath ? absolutePath.replace(rootPath, '').replace(/\\/g, '/').replace(/^\/?images\/upload\//, '') : '';
             return relativePath;
         }
-        res.render("User_Admin/createSP.ejs", {
+        res.render("User_Admin/QL_SanPham/createSP.ejs", {
             logIn: loggedIn, 
             taikhoan,
             rootPath: '/', 
@@ -290,7 +290,7 @@ module.exports = {
             const relativePath = absolutePath ? absolutePath.replace(rootPath, '').replace(/\\/g, '/').replace(/^\/?images\/upload\//, '') : '';
             return relativePath;
         }
-        res.render("User_Admin/updateSP.ejs", {
+        res.render("User_Admin/QL_SanPham/updateSP.ejs", {
             logIn: loggedIn, 
             taikhoan,
             rootPath: '/', 

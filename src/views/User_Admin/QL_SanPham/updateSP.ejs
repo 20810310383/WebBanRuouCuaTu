@@ -52,7 +52,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <%- include("../User_Admin/partials_admin/sidebar_navbar.ejs") %>
+        <%- include("../partials_admin/sidebar_navbar.ejs") %>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -62,7 +62,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <%- include("../User_Admin/partials_admin/header_navbar.ejs") %>
+                <%- include("../partials_admin/header_navbar.ejs") %>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -70,7 +70,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Thêm sản phẩm</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Chỉnh sửa sản phẩm</h1>
                         
                     </div>
                 
@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="container">
                               
-                            <form action="/create-sp" method="post" enctype="multipart/form-data" id="themsp-form">       
+                            <form action="/update-sp" method="post" enctype="multipart/form-data" id="themsp-form">       
                                 
                                 <table class="table table-condensed">
                                     <thead>
@@ -89,7 +89,21 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>                                        
+                                    <tbody>   
+                                        <tr style="display: none;">
+                                            <td>
+                                                <label style="font-size: 20px;" class="color-label" for="idupdatesp">ID SP: </label>
+                                            </td>
+                                            <td>
+                                                <input                                                                                                        
+                                                    style="width: 550px; "
+                                                    name="idupdatesp" 
+                                                    id="idupdatesp" 
+                                                    type="text" 
+                                                    value="<%= getId._id %>"
+                                                />
+                                            </td>
+                                        </tr>                                     
                                         <tr>
                                             <td>
                                                 <label style="font-size: 20px;" class="color-label" for="tenSP">Tên Sản Phẩm: </label>
@@ -101,7 +115,7 @@
                                                     name="TenSP" 
                                                     id="tenSP" 
                                                     type="text" 
-                                                    
+                                                    value="<%= getId.TenSP %>"
                                                 />
                                             </td>
                                         </tr>
@@ -117,7 +131,7 @@
                                                     name="GiaBan" 
                                                     id="giaSP" 
                                                     type="text" 
-                                                    
+                                                    value="<%= getId.GiaBan %>"
                                                 />
                                             </td>
                                         </tr>
@@ -133,7 +147,7 @@
                                                     name="GiaCu" 
                                                     id="giacuSP" 
                                                     type="text" 
-                                                   
+                                                    value="<%= getId.GiaCu %>"
                                                 />
                                             </td>
                                         </tr>
@@ -144,6 +158,7 @@
                                             </td>
                                             <td>                                                
                                                 <select id="salenew" name="Sale_New" class="form-select" aria-label="Default select example" style="width: 150px; font-size: 20px;">
+                                                    <option><%= getId.Sale_New %></option>
                                                     <option>Sale</option>
                                                     <option>New</option>
                                                     <option>Hot</option>
@@ -171,10 +186,8 @@
                                                 <label style="font-size: 20px;"  class="color-label" for="IdLoaiSP">Loại Sản Phẩm: </label>
                                             </td>
                                             <td>
-                                                <select id="IdLoaiSP" name="IdLoaiSP" class="form-select" aria-label="Default select example" style="width: 150px; font-size: 20px;">
-                                                    <option value="1">
-                                                        Hãy chọn loại sản phẩm
-                                                    </option>
+                                                <select required id="IdLoaiSP" name="IdLoaiSP" class="form-select" aria-label="Default select example" style="width: 150px; font-size: 20px;">                                                    
+                                                    
                                                     <% TenSp.forEach(function(tensp) { %> 
                                                     <option value="<%= tensp.TenLoaiSP %>"><%= tensp.TenLoaiSP %></option>
                                                     <% }); %>
@@ -194,7 +207,7 @@
                                                     name="SoLuongTon" 
                                                     id="SoLuongTon" 
                                                     type="text" 
-                                                   
+                                                    value="<%= getId.SoLuongTon %>"
                                                 />
                                             </td>
                                         </tr>
@@ -210,7 +223,7 @@
                                                     name="SoLuongBan" 
                                                     id="SoLuongBan" 
                                                     type="text" 
-                                                    
+                                                    value="<%= getId.SoLuongBan %>"
                                                 />
                                             </td>
                                         </tr>
@@ -226,7 +239,7 @@
                                                     name="SoLuotDanhGia" 
                                                     id="SoLuotDanhGia" 
                                                     type="text" 
-                                                    
+                                                    value="<%= getId.SoLuotDanhGia %>"
                                                 />
                                             </td>
                                         </tr>
@@ -236,10 +249,10 @@
                                                 <label style="font-size: 20px;"  class="color-label" for="mota">Mô Tả: </label>
                                             </td>
                                             <td>                                                
-                                                <textarea 
+                                                <textarea                                                 
                                                     id="mota" 
                                                     name="MoTa" 
-                                                    style="width: 700px; height: 200px;"> </textarea>
+                                                    style="width: 700px; height: 200px;"><%= getId.MoTa %> </textarea>
                                             </td>
                                         </tr>
 
@@ -253,7 +266,7 @@
 
                                 <button 
                                     style="font-size: 22px; width: 300px; height: 50px; font-weight: bold; padding: 10px;" 
-                                    class="btn btn-primary">THÊM MỚI SẢN PHẨM</button>                               
+                                    class="btn btn-primary">CHỈNH SỬA SẢN PHẨM</button>                               
                             </form>
                             
                           </div>
