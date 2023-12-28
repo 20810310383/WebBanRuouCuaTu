@@ -1,13 +1,24 @@
 const express = require('express');
 const {
     getHomePage,
-    home,
-    chiTietSP,
-    homeSearch,
-    trangSanPham,
-    trangSanPham_search
+    home,    
+    
 
 } = require("../controllers/homeController")
+
+const {
+    chiTietSP,
+    
+} = require("../controllers/chiTietSPController")
+
+const {
+    homeSearch,
+    trangSanPham,
+    trangSearchLoaiSanPham,
+    homeSearchLoaiSanPham,
+
+    
+} = require("../controllers/trangSP_TimKiemController")
 
 const {
     menuTypesProduct,
@@ -48,7 +59,9 @@ const {
 const {
     addToCart,
     getCartInfo,
-    getCTCart
+    getCTCart,
+    removeACTCart,
+    
 } = require("../controllers/addToCartController")
 
 const router = express.Router();
@@ -62,11 +75,14 @@ router.get("/home", getHomePage)
 // ctiet SP
 router.get("/ctsp", chiTietSP)
 // search san pham
-// form tim kiem 
+// form tim kiem san pham
 router.get("/search-sp", trangSanPham)
-// router.get("/search-sp", trangSanPham_search)
 // khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
 router.get("/search-sp", homeSearch)
+// tim kiem theo loai sp
+router.get("/search-sp1", trangSearchLoaiSanPham)
+// khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
+router.get("/search-sp1", homeSearchLoaiSanPham)
 
 
 // form login/dk KH
@@ -125,6 +141,8 @@ router.post("/addtocart", addToCart)
 router.get('/cart-info', getCartInfo)
 // get form chi tiet cart
 router.get('/detail-cart', getCTCart)
+// xóa 1 san pham trong chi tiet cart
+router.post('/delete-detail-cart', removeACTCart)
 
 
 module.exports = router;

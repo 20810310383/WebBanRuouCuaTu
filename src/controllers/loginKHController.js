@@ -64,8 +64,18 @@ module.exports = {
             let taikhoan = req.body.taikhoan
             let matkhau = req.body.matkhau
             var sessions
+
+            if (req.session.cartId) {
+
+                // khi login thì sẽ có giỏ hàng khi add, khi logout đi sẽ xóa luôn trong db đi
+                // await Cart.findByIdAndDelete(req.session.cartId);
+                await Cart.deleteById(req.session.cartId);
+
+                // Nếu có giỏ hàng, xóa giỏ hàng
+                req.session.cartId = null;
+            }
       
-          // Check if the user exists
+            // Check if the user exists
             const user = await TaiKhoan_KH.findOne({ TenDangNhap: taikhoan, MatKhau: matkhau });
             if (!user) {
                 return res.status(401).send("<span style=\"color: red; font-weight: bold;\">sai tài khoản or mật khẩu.</span>");

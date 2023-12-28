@@ -78,6 +78,27 @@ module.exports = {
             const relativePath = absolutePath ? absolutePath.replace(rootPath, '').replace(/\\/g, '/').replace(/^\/?images\/upload\//, '') : '';
             return relativePath;
         }
+
+        // -----------------  hien thi loai sp  -----------------    
+
+        let sanpham = await SanPham.find().populate('IdLoaiSP').exec();
+        console.log("TenLoaiSP:",sanpham);
+
+        let idLoaiSPArray = sanpham.map(item => item.IdLoaiSP._id);
+        console.log("idLoaiSPArray:", idLoaiSPArray);
+        
+        let tenLoaiSPArray = [];
+        for (let i = 0; i < idLoaiSPArray.length; i++) {
+            let idloaiSP = await LoaiSP.findOne({ _id: idLoaiSPArray[i] }).exec();
+            // console.log("idloaiSP[]: ", idloaiSP);
+            // tenLoaiSPArray.push(idloaiSP.TenLoaiSP);
+            tenLoaiSPArray.push(idloaiSP.TenLoaiSP);
+            console.log("ten loai sp:", tenLoaiSPArray[i]);
+        }
+
+        let hienthi_tenLoaiSP = tenLoaiSPArray.map(e => e)
+        console.log("hienthi_tenLoaiSP:",hienthi_tenLoaiSP);
+
         res.render("User_Admin/homeQLSanPham.ejs", {
             soTrang: numPage, 
             curPage: page, 
@@ -87,7 +108,7 @@ module.exports = {
             formatCurrency: formatCurrency,
             getRelativeImagePath: getRelativeImagePath,
             sanpham: all,
-   
+            hienthi_tenLoaiSP
         })
     },
 
@@ -291,7 +312,7 @@ module.exports = {
             let TenSP = req.body.TenSP
             let TenLoaiSP = req.body.IdLoaiSP
             let GiaBan = req.body.GiaBan
-            let GiaCu = req.body.GiaCu
+            let GiaCu = req.body.GiaCu 
             let MoTa = req.body.MoTa
             let Sale_New = req.body.Sale_New
             let SoLuongTon = req.body.SoLuongTon
@@ -317,8 +338,10 @@ module.exports = {
             let SP = await SanPham.findByIdAndUpdate( {_id: id}, {
                 TenSP, GiaBan, GiaCu, MoTa, Sale_New, SoLuongTon, SoLuongBan,
                 Image: imageUrl,
-                IdLoaiSP
+                IdLoaiSP: IdLoaiSP
             })
+
+            console.log("chinh sua sp: ", SP);
             
             // res.status(201).json({ success: true, message: 'Chỉnh sửa sản phẩm thành công' });
             res.redirect('/home-qlsp'); 

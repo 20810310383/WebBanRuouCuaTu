@@ -186,10 +186,8 @@
                                                 <label style="font-size: 20px;"  class="color-label" for="IdLoaiSP">Loại Sản Phẩm: </label>
                                             </td>
                                             <td>
-                                                <select id="IdLoaiSP" name="IdLoaiSP" class="form-select" aria-label="Default select example" style="width: 150px; font-size: 20px;">                                                    
-                                                    <option value="1">
-                                                        Hãy chọn loại sản phẩm
-                                                    </option>
+                                                <select required id="IdLoaiSP" name="IdLoaiSP" class="form-select" aria-label="Default select example" style="width: 150px; font-size: 20px;">                                                    
+                                                    
                                                     <% TenSp.forEach(function(tensp) { %> 
                                                     <option value="<%= tensp.TenLoaiSP %>"><%= tensp.TenLoaiSP %></option>
                                                     <% }); %>
