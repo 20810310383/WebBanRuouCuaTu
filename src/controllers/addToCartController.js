@@ -58,6 +58,11 @@ module.exports = {
                         MaTKKH: null,
                     });
                 }
+
+            }
+            // Lưu cartId vào session nếu user không đăng nhập
+            if (!customerAccountId) {
+                req.session.cartId = cart._id;
             }
     
             // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
@@ -92,6 +97,7 @@ module.exports = {
             return res.status(500).json({ message: 'Lỗi server' });
         }
     },    
+    
 
     // Lấy thông tin giỏ hàng (tổng số lượng và tổng tiền)
     getCartInfo: async (req, res) => {
