@@ -7,7 +7,6 @@ const aqp = require('api-query-params')
 // --------------------------------------
 
 module.exports = {
-
     chiTietSP: async (req, res) => {
         var sessions = req.session;
         let taikhoan = sessions.taikhoan

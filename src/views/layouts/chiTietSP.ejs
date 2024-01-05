@@ -141,8 +141,9 @@
 								<a class="mr-2" style="color: #ff0000; font-size: 18px;"><span style="color: rgb(13, 13, 36); font-size: 18px;">Số luợng tồn:</span>  <%= CTSP.SoLuongTon %> </a>
 							</div>
 						</div>
-																		
+												
 						<button style="font-size: 18px; justify-items: center;align-items: center; display: flex;" type="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+						
 					</form>
 					          	
     			</div>
@@ -348,12 +349,15 @@
 			// Bắt sự kiện khi form được submit
 			$('#form-addtocart').submit(function(event) {
 				event.preventDefault(); // Ngăn chặn hành động mặc định của form
+
+				
 				// Lấy dữ liệu form
 				const formData = $(this).serialize();
 				// Gửi yêu cầu thêm sản phẩm vào giỏ hàng
 				addToCart(formData);
 			});
 		});
+
 
 		// Hàm gửi yêu cầu thêm sản phẩm vào giỏ hàng và cập nhật thông tin giỏ hàng
 		function addToCart(formData) {
@@ -369,7 +373,7 @@
 					alert('Đã thêm sản phẩm vào giỏ hàng thành công!');
 
 					// Chuyển hướng trang sau khi thêm vào giỏ hàng thành công
-					window.location.href = '/home';
+					window.location.href = '/detail-cart';
 				},
 				error: function(error) {
 					console.error('Lỗi khi thêm vào giỏ hàng:', error);

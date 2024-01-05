@@ -9,7 +9,7 @@ const TaiKhoan_KH_Schema = new mongoose.Schema({
     SDT: { type: String },
     Email: { type: String },
     NgayTao: { type: Date, default: Date.now(), immutable: true },
-    MaKH: { type: mongoose.SchemaTypes.ObjectId, ref: "KhachHang" },
+    // MaKH: { type: mongoose.SchemaTypes.ObjectId, ref: "KhachHang" },
     // "XacThuc": { type: Boolean, default: false }
 })
 

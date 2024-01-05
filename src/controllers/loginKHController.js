@@ -84,13 +84,15 @@ module.exports = {
             req.session.loggedIn = true
             req.session.taikhoan = taikhoan
             req.session.userId = user._id
+            req.user = { _id: user._id };
+
             sessions=req.session
             console.log("sessions:",sessions)
 
             let cart;
             if (user) {
                 // Nếu đã đăng nhập, kiểm tra xem có giỏ hàng trong database không
-                cart = await Cart.findOne({ 'cart.MaTKKH': user._id });
+                cart = await Cart.findOne({ 'MaTKKH': user._id });
 
                 if (!cart) {
                     cart = new Cart({
@@ -133,25 +135,26 @@ module.exports = {
     },
 
     getLogoutKH: async (req, res) => {
+
         // if (req.session.taikhoan) {
+        //     // Kiểm tra xem có giỏ hàng trong session hay không
+        //     if (req.session.cartId) {
+
+        //         // khi login thì sẽ có giỏ hàng khi add, khi logout đi sẽ xóa luôn trong db đi
+        //         // await Cart.findByIdAndDelete(req.session.cartId);
+        //         await Cart.deleteById(req.session.cartId);
+
+        //         // Nếu có giỏ hàng, xóa giỏ hàng
+        //         req.session.cartId = null;
+        //     }
         //     req.session.destroy();
         // }
-        // // req.logout();
-        // res.redirect("/");
+        // res.redirect("/")
 
         if (req.session.taikhoan) {
-            // Kiểm tra xem có giỏ hàng trong session hay không
-            if (req.session.cartId) {
-
-                // khi login thì sẽ có giỏ hàng khi add, khi logout đi sẽ xóa luôn trong db đi
-                // await Cart.findByIdAndDelete(req.session.cartId);
-                await Cart.deleteById(req.session.cartId);
-
-                // Nếu có giỏ hàng, xóa giỏ hàng
-                req.session.cartId = null;
-            }
             req.session.destroy();
         }
         res.redirect("/")
+
     },
 }

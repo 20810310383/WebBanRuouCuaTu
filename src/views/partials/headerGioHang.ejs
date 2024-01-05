@@ -88,3 +88,38 @@
 	});
 
 </script>
+
+<!-- <script>
+    // Sử dụng JavaScript để thực hiện request và cập nhật dữ liệu
+    document.addEventListener('DOMContentLoaded', function () {
+        // Thực hiện request lên server để lấy thông tin giỏ hàng
+        fetch('/cart-info')
+            .then(response => response.json())
+            .then(data => {
+                // Nếu user đã đăng nhập, cập nhật số lượng và tổng giá lên giao diện
+                if (data.totalQuaty !== undefined && data.totalPrice !== undefined) {
+                    const formattedTotalPrice = new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                    }).format(data.totalPrice || 0);
+
+                    const cartInfoElement = document.getElementById('cart-info');
+                    cartInfoElement.innerHTML = `<small>${data.totalQuaty || 0}</small>`;
+
+                    const cartInfoElement1 = document.getElementById('cart-info1');
+                    cartInfoElement1.innerHTML = `${formattedTotalPrice || 0}`;
+                } else {
+                    // Nếu user chưa đăng nhập, ẩn thông tin giỏ hàng
+                    const cartInfoElement = document.getElementById('cart-info');
+                    cartInfoElement.innerHTML = `<small></small>`;
+
+                    const cartInfoElement1 = document.getElementById('cart-info1');
+                    cartInfoElement1.innerHTML = '';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching cart info:', error);
+            });
+    });
+</script> -->
+
