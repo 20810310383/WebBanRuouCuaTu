@@ -70,8 +70,8 @@ module.exports = {
             const qty = !isNaN(qtyy) && qtyy > 0 ? qtyy : 1;
     
             // Lấy thông tin đăng nhập của khách hàng từ request
-            const customerAccountId = req.user ? req.user._id : null;
-    
+            const customerAccountId = req.session.userId;
+            console.log(">>> check id customerAccountId: ", customerAccountId);
             // Kiểm tra xem sản phẩm có tồn tại không
             const product = await SanPham.findById(productId);
             if (!product) {
