@@ -65,19 +65,22 @@ module.exports = {
             let matkhau = req.body.matkhau
             var sessions
 
-            if (req.session.cartId) {
+            // Mặc định đặt loggedIn là false
+            req.session.loggedIn = false;
 
+            // trường hợp này xử lý cho lúc logout muốn xóa luôn sp khi add to cart
+            if (req.session.cartId) {
                 // khi login thì sẽ có giỏ hàng khi add, khi logout đi sẽ xóa luôn trong db đi
                 // await Cart.findByIdAndDelete(req.session.cartId);
                 await Cart.deleteById(req.session.cartId);
 
                 // Nếu có giỏ hàng, xóa giỏ hàng
                 req.session.cartId = null;
-            }
-      
+            }            
+
             // Check if the user exists
             const user = await TaiKhoan_KH.findOne({ TenDangNhap: taikhoan, MatKhau: matkhau });
-            if (!user) {
+            if (!user) {            
                 return res.status(401).send("<span style=\"color: red; font-weight: bold;\">sai tài khoản or mật khẩu.</span>");
             }                      
 
@@ -110,21 +113,6 @@ module.exports = {
                 req.session.cartId = cart._id;
             }
 
-            // let cart = await Cart.findOne({ 'cart.MaTKKH': user._id })
-            // if (!cart) {
-            //     cart = new Cart({ 
-            //         cart: { 
-            //                 items: [], 
-            //                 totalPrice: 0, 
-            //                 totalQuaty: 0 
-            //             },
-            //             MaTKKH: user._id,
-            //             })
-            //     await cart.save()
-            // }                   
-            // // Set the cart information in the session
-            // req.session.cartId = cart._id
-
             console.log("user: ", user)            
         
             res.redirect(`/`);
@@ -135,7 +123,7 @@ module.exports = {
     },
 
     getLogoutKH: async (req, res) => {
-
+        // trường hợp này xử lý cho lúc logout muốn xóa luôn sp khi add to cart
         // if (req.session.taikhoan) {
         //     // Kiểm tra xem có giỏ hàng trong session hay không
         //     if (req.session.cartId) {

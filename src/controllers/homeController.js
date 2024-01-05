@@ -16,13 +16,12 @@ module.exports = {
     getHomePage: async (req, res) => {
         var sessions = req.session;
         let taikhoan = sessions.taikhoan
-        let loggedIn = sessions.loggedIn
-        let ten = sessions.ten
+        // let loggedIn = sessions.loggedIn
+        let loggedIn = req.session.loggedIn ? true : false;
         
-        console.log(sessions);
-        console.log(taikhoan);
-        console.log(loggedIn);
-        console.log(ten);
+        console.log("sessions: ",sessions);
+        console.log("taikhoan: ",taikhoan);
+        console.log("loggedIn: ",loggedIn);
 
         let page = 1
         const limit = 8

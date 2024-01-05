@@ -9999,3 +9999,23 @@ textarea.form-control {
     .search-bar button:hover {
       background-color: #0056b3; /* Màu nền khi hover */
     }
+
+    /* CSS cho phần tử thông báo */
+    .custom-alert {
+      padding: 10px;
+      font-size: 18px;
+      margin: 0 auto; /* Để căn giữa theo chiều ngang */
+      border: 1px solid #4CAF50;
+      border-radius: 5px;
+      background-color: #dff0d8;
+      color: green;
+      font-weight: bold;
+      display: none;
+      width: 100%; /* Đặt chiều rộng phù hợp */
+      text-align: center; /* Để căn giữa theo chiều ngang */
+    }
+
+    /* CSS cho nội dung thông báo */
+    #alert-message {
+      margin: 0; /* Để loại bỏ margin mặc định */
+    }

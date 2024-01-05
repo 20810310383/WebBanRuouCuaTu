@@ -10,13 +10,8 @@ module.exports = {
     chiTietSP: async (req, res) => {
         var sessions = req.session;
         let taikhoan = sessions.taikhoan
-        let loggedIn = sessions.loggedIn
-        let ten = sessions.ten
-        
-        console.log(sessions);
-        console.log(taikhoan);
-        console.log(loggedIn);
-        console.log(ten);
+        // let loggedIn = sessions.loggedIn
+        let loggedIn = req.session.loggedIn ? true : false;        
 
         let id = req.query.idCTSP
 

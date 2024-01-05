@@ -23,9 +23,11 @@ configViewEngine(app);
 const oneDay = 1000 * 60 * 60 * 24;     // lưu phiên trong 1 ngày
 app.use(session({
     secret: 'secret-key',  // Chuỗi bí mật để mã hóa phiên
-    saveUninitialized:true,
-    cookie: { maxAge: oneDay },     // đặt thời gian hết hạn của cookie
-    resave: true 
+    saveUninitialized: true,
+    cookie: { 
+        maxAge: oneDay, 
+    },     // đặt thời gian hết hạn của cookie
+    resave: true  
 }));
 app.use(cookieParser());
 

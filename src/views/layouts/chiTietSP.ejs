@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="css/style.css">
 
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oL7JN3KMWF6dy0wKXPsej4lM4PUn3SLDuiZJ+LUEO4A=" crossorigin="anonymous"></script>
-
     
   </head>
   <body>
@@ -142,10 +141,37 @@
 							</div>
 						</div>
 												
-						<button style="font-size: 18px; justify-items: center;align-items: center; display: flex;" type="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
-						
+						<button style="font-size: 18px; justify-items: center;align-items: center; display: flex;" type="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>						
+						</br>
+
+						<% if (logIn) { %> 
+						<div id="custom-alert" class="custom-alert hidden">
+							<p id="alert-message"></p>
+						</div>   
+						<% } else { %>
+						<div 
+							style="background-color: rgb(249 232 232); 
+									border: 1px solid #ff0000;
+									margin: 0 auto;
+									border-radius: 5px;
+									font-weight: bold;
+      								display: none;
+									text-align: center;
+									padding: 2px;
+									width: 580px;
+							" 
+							id="custom-alert" 
+							class="custom-alert hidden"
+						>
+							<p style="color: red; font-size: 22px;">Vui lòng Login trước khi thêm sản phẩm vào giỏ hàng</p>
+						</div> 
+						<% } %> 
+						<!-- <div id="custom-alert" class="custom-alert hidden">
+							<p id="alert-message"></p>
+						</div>     -->
 					</form>
-					          	
+
+
     			</div>
     		</div>
 
@@ -349,7 +375,6 @@
 			// Bắt sự kiện khi form được submit
 			$('#form-addtocart').submit(function(event) {
 				event.preventDefault(); // Ngăn chặn hành động mặc định của form
-
 				
 				// Lấy dữ liệu form
 				const formData = $(this).serialize();
@@ -368,17 +393,41 @@
 				success: function(response) {
 					// Thêm thành công, cập nhật thông tin giỏ hàng
 					// updateCartInfo();
+
 					// Hiển thị thông báo khi thành công
-					// flashLibrary.showErrorMessage('Đã thêm sản phẩm vào giỏ hàng thành công!');
-					alert('Đã thêm sản phẩm vào giỏ hàng thành công!');
+					// alert('Đã thêm sản phẩm vào giỏ hàng thành công!');
+					showCustomAlert('Đã thêm sản phẩm vào giỏ hàng thành công!');
 
 					// Chuyển hướng trang sau khi thêm vào giỏ hàng thành công
-					window.location.href = '/detail-cart';
+					// window.location.href = '/detail-cart';
 				},
 				error: function(error) {
 					console.error('Lỗi khi thêm vào giỏ hàng:', error);
 				}
 			});
+		}
+
+		// Hàm hiển thị thông báo tùy chỉnh
+		function showCustomAlert(message) {
+			const alertElement = document.getElementById('custom-alert');
+			const messageElement = document.getElementById('alert-message');
+
+			// Hiển thị thông báo và đặt nội dung
+			alertElement.style.display = 'block';
+			messageElement.innerText = message;
+
+			// Ẩn thông báo sau một khoảng thời gian (ví dụ: 5 giây)
+			setTimeout(() => {
+				hideCustomAlert();
+			}, 5000);
+		}
+
+		// Hàm ẩn thông báo tùy chỉnh
+		function hideCustomAlert() {
+			const alertElement = document.getElementById('custom-alert');
+
+			// Ẩn thông báo
+			alertElement.style.display = 'none';
 		}
 		
 	</script>
