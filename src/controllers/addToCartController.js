@@ -11,14 +11,6 @@ module.exports = {
 
     addToCart: async (req, res) => {
         try {
-            // let loggedIn = req.session.loggedIn
-            let loggedIn = req.session.loggedIn ? true : false;
-            console.log(">>> check loggedIn:", loggedIn)
-            // Kiểm tra xem người dùng đã đăng nhập chưa
-            if (!loggedIn) {
-                // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
-                return res.redirect('/loginKH');
-            }
 
             const productId = req.query.productId;
             const qtyy = parseInt(req.body.quantity);

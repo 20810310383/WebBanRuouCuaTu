@@ -27,9 +27,7 @@ module.exports = {
             const rootPath = '<%= rootPath.replace(/\\/g, "\\\\") %>';
             const relativePath = absolutePath ? absolutePath.replace(rootPath, '').replace(/\\/g, '/').replace(/^\/?images\/upload\//, '') : '';
             return relativePath;
-        }    
-        
-        
+        }                    
 
         res.render("layouts/chiTietSP.ejs", {
             CTSP: ctsp, 
