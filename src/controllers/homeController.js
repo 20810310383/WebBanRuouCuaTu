@@ -64,7 +64,7 @@ module.exports = {
             formatCurrency: formatCurrency, 
             rootPath: '/', 
             getRelativeImagePath: getRelativeImagePath,
-            
+
            
         })
     },

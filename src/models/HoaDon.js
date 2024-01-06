@@ -11,6 +11,8 @@ const HoaDon_Schema = new mongoose.Schema({
   PhiSanPham: { type: Number, default: 0 },
   PhiShip: { type: Number, default: 30000 },
   TongTien: { type: Number, default: 0 },
+  GiamGia: { type: Number, default: 0 },
+  TongSLDat: { type: Number, default: 0 },
   TinhTrangDonHang: { 
     type: String, 
     enum: ["Chưa giao", "Đã giao", "Đang giao"], 

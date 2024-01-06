@@ -1,5 +1,6 @@
 const SanPham = require("../models/SanPham")
 const Cart = require("../models/Cart")
+const HoaDon = require("../models/HoaDon")
 const mongoose = require('mongoose');
 require('rootpath')();
 

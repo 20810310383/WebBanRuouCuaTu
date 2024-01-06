@@ -27,6 +27,7 @@ const CartSchema = new Schema({
             default: 0  // Set a default value
         },
         PhiShip: { type: Number, default: 30000 },
+        GiamGia: { type: Number, default: 0 },
     },
     MaTKKH: { 
         ref: "TaiKhoan_KH", 

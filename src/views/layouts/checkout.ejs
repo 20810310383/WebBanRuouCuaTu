@@ -114,7 +114,7 @@
                     <div class="col-md-7">
                         <div class="form-group">
                             <label for="HoTen">Họ và tên <span style="color: red; font-size: 25px;font-weight: bold;">*</span></label>
-                            <input required id="HoTen" type="text" class="form-control" placeholder="Nhập họ và tên của bạn ..." style=" font-size: 18px;">
+                            <input name="HoTen" required id="HoTen" type="text" class="form-control" placeholder="Nhập họ và tên của bạn ..." style=" font-size: 18px;">
                         </div>
                       </div>
 	          		<div class="col-md-6">
@@ -122,7 +122,7 @@
                             <label for="country" class="form-label">Quốc Gia <span style="color: red; font-size: 25px;font-weight: bold;">*</span></label>
                                 <div class="select-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                    <select required id="country" class="form-control"  style=" font-size: 18px;">
+                                    <select name="QuocGia" required id="country" class="form-control"  style=" font-size: 18px;">
                                         <option > Chọn Quốc Gia </option>
                                     </select>
                                 </div> 
@@ -133,8 +133,8 @@
                       <label for="state" class="form-label">Thành Phố <span style="color: red; font-size: 25px;font-weight: bold;">*</span></label>
                                 <div class="select-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                    <select required id="state" class="form-control"  style=" font-size: 18px;">
-                                        <option>_______</option>
+                                    <select name="ThanhPho" required id="state" class="form-control"  style=" font-size: 18px;">
+                                        <option>__</option>
                                     </select>
                                 </div> 
 	                </div>
@@ -144,7 +144,7 @@
 		            <div class="col-md-12">
 		            	<div class="form-group">
                             <label for="DiaChi_ChiTiet">Địa chỉ cụ thể <span style="color: red; font-size: 25px;font-weight: bold;">*</span></label>
-                            <input required id="DiaChi_ChiTiet" type="text" class="form-control" placeholder="Vui lòng nhập địa chỉ cụ thể..." style=" font-size: 18px;">
+                            <input name="DiaChi_ChiTiet" required id="DiaChi_ChiTiet" type="text" class="form-control" placeholder="Vui lòng nhập địa chỉ cụ thể..." style=" font-size: 18px;">
 	                    </div>
 		            </div>
 
@@ -152,13 +152,13 @@
 		            <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="SDT">Điện thoại <span style="color: red; font-size: 25px;font-weight: bold;">*</span></label>
-	                  <input required id="SDT" type="phone" class="form-control" placeholder="Vui lòng nhập số điện thoại của bạn..." style=" font-size: 18px;">
+	                  <input name="SDT" required id="SDT" type="phone" class="form-control" placeholder="Vui lòng nhập số điện thoại của bạn..." style=" font-size: 18px;">
 	                </div>
 	              </div>
 	              <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="Email">Địa chỉ email </label>
-	                  <input id="Email" type="email" class="form-control" placeholder="Vui lòng nhập Địa chỉ email của bạn..." style=" font-size: 18px;">
+	                  <input name="Email" id="Email" type="email" class="form-control" placeholder="Vui lòng nhập Địa chỉ email của bạn..." style=" font-size: 18px;">
 	                </div>
                 </div>
                 <div class="w-100"></div>
@@ -171,29 +171,95 @@
 	          			<h3 class="billing-heading mb-4">Tổng số giỏ hàng</h3>
                           <p class="d-flex">
                               <span style="color: black;">Số Lượng Đã Đặt</span>
-                              <span style="color: blue; font-size: 18px;"><%= cartItemss.totalQuaty !== 0 ? cartItemss.totalQuaty : 0 %> </span>
+                              <input name="PhiShip"
+                                  type="text" 
+                                  readonly 
+                                  style="
+                                    border: none; /* Loại bỏ viền */
+                                    outline: none; /* Loại bỏ đường viền khi được focus */
+                                    background-color: transparent; /* Để hiển thị nền trong suốt */
+                                    color: blue;
+                                    font-size: 18px;
+                                    
+                                  "
+                                  value="<%= cartItemss.totalQuaty !== 0 ? cartItemss.totalQuaty : 0 %>"
+                                >
+                              <!-- <span style="color: blue; font-size: 18px;"><%= cartItemss.totalQuaty !== 0 ? cartItemss.totalQuaty : 0 %> </span> -->
                           </p>
 	          			<p class="d-flex">
                             <span style="color: black;">Tổng Giá 
                                 <%= cartItemss.totalQuaty !== 0 ? cartItemss.totalQuaty : 0 %>
                                 Sản Phẩm</span>
-    						<span style="color: blue; font-size: 18px;"><%= cartItemss.totalPrice !== 0 ? formatCurrency(cartItemss.totalPrice) : formatCurrency(0) %></span>
+
+                                <input name="PhiShip"
+                                  type="text" 
+                                  readonly 
+                                  style="
+                                    border: none; /* Loại bỏ viền */
+                                    outline: none; /* Loại bỏ đường viền khi được focus */
+                                    background-color: transparent; /* Để hiển thị nền trong suốt */
+                                    color: blue;
+                                    font-size: 18px;
+                                    
+                                  "
+                                  value="<%= cartItemss.totalPrice !== 0 ? formatCurrency(cartItemss.totalPrice) : formatCurrency(0) %>"
+                                >
+    						<!-- <span style="color: blue; font-size: 18px;"><%= cartItemss.totalPrice !== 0 ? formatCurrency(cartItemss.totalPrice) : formatCurrency(0) %></span> -->
 		    			</p>
 		    					<p class="d-flex">
 		    						<span style="color: black;">Vận Chuyển</span>
-		    						<span style="color: blue; font-size: 18px;"><%= cartItemss.PhiShip !== 0 ? formatCurrency(cartItemss.PhiShip) : formatCurrency(0) %></span>
+                    <input name="PhiShip"
+                      type="text" 
+                      readonly 
+                      style="
+                        border: none; /* Loại bỏ viền */
+                        outline: none; /* Loại bỏ đường viền khi được focus */
+                        background-color: transparent; /* Để hiển thị nền trong suốt */
+                        color: blue;
+                        font-size: 18px;
+                        
+                      "
+                      value="<%= cartItemss.PhiShip !== 0 ? formatCurrency(cartItemss.PhiShip) : formatCurrency(0) %>"
+                    >
+		    						<!-- <span style="color: blue; font-size: 18px;"><%= cartItemss.PhiShip !== 0 ? formatCurrency(cartItemss.PhiShip) : formatCurrency(0) %></span> -->
 		    					</p>
 		    					<p class="d-flex">
 		    						<span style="color: black;">Giảm Giá</span>
-		    						<span style="color: blue; font-size: 18px;">0</span>
+                    <input name="GiamGia"
+                      type="text" 
+                      readonly 
+                      style="
+                        border: none; /* Loại bỏ viền */
+                        outline: none; /* Loại bỏ đường viền khi được focus */
+                        background-color: transparent; /* Để hiển thị nền trong suốt */
+                        color: blue;
+                        font-size: 18px;
+                        
+                      "
+                      value="<%= cartItemss.GiamGia !== 0 ? formatCurrency(cartItemss.GiamGia) : formatCurrency(0) %>"
+                    >
+		    						<!-- <span style="color: blue; font-size: 18px;">0</span> -->
 		    					</p>
 		    					<hr> 
 		    					<p class="d-flex total-price">
 		    						<span style="color: black;">TỔNG CỘNG</span>
                                    
-		    						<span style="color: red; font-size: 18px;">
+                                    <input name="TongTien"
+                                        type="text" 
+                                        readonly 
+                                        style="
+                                            border: none; /* Loại bỏ viền */
+                                            outline: none; /* Loại bỏ đường viền khi được focus */
+                                            background-color: transparent; /* Để hiển thị nền trong suốt */
+                                            color: red;
+                                            font-size: 18px;
+                                            font-weight: bold;
+                                        "
+                                        value="<%= cartItemss.totalPrice !== 0 ? formatCurrency(cartItemss.totalPrice + cartItemss.PhiShip) : formatCurrency(0) %>"
+                                    >
+		    						<!-- <span style="color: red; font-size: 18px;">
                                         <%= cartItemss.totalPrice !== 0 ? formatCurrency(cartItemss.totalPrice + cartItemss.PhiShip) : formatCurrency(0) %>
-                                    </span>
+                                    </span> -->
                                     
 		    					</p>
 					</div>
