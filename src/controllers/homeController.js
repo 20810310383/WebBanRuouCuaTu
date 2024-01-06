@@ -1,4 +1,5 @@
 const SanPham = require("../models/SanPham")
+const Cart = require("../models/Cart")
 require('rootpath')();
 
 const aqp = require('api-query-params')
@@ -63,6 +64,7 @@ module.exports = {
             formatCurrency: formatCurrency, 
             rootPath: '/', 
             getRelativeImagePath: getRelativeImagePath,
+            
            
         })
     },

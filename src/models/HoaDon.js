@@ -16,6 +16,11 @@ const HoaDon_Schema = new mongoose.Schema({
     enum: ["Chưa giao", "Đã giao", "Đang giao"], 
     default: "Chưa giao" 
   },
+  TinhTrangThanhToan: { 
+    type: String, 
+    enum: ["Đã Thanh Toán", "Chưa Thanh Toán"], 
+    default: "Chưa Thanh Toán" 
+  },
   NgayLap: { type: Date, default: Date.now(), immutable: true },
   MaKH: { type: mongoose.SchemaTypes.ObjectId, ref: "KhachHang" },
 });
