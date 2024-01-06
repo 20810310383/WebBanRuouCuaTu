@@ -6,7 +6,7 @@ const HoaDon_Schema = new mongoose.Schema({
   QuocGia: { type: String },
   ThanhPho: { type: String },
   DiaChi_ChiTiet: { type: String },
-  SDT: { type: String },
+  SoDienThoai: { type: String },
   Email: { type: String },
   PhiSanPham: { type: Number, default: 0 },
   PhiShip: { type: Number, default: 30000 },

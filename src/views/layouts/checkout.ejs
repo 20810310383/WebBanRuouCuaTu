@@ -37,7 +37,8 @@
       }
 
     </style>
-
+    <!-- Thêm Thư Viện Flash -->
+    <script src="link-to-flash-library.js"></script>
   </head>
   <body>
 
@@ -108,7 +109,7 @@
     	<div class="container">
     		<div class="row justify-content-center">
           <div class="col-xl-10 ftco-animate">
-						<form action="#" class="billing-form">
+						<form action="/dat-hang" class="billing-form" method="post" id="dathang">
 							<h3 class="mb-4 billing-heading">Thông tin đặt hàng</h3>
 	          	<div class="row align-items-end">
                     <div class="col-md-7">
@@ -152,7 +153,7 @@
 		            <div class="col-md-6">
 	                <div class="form-group">
 	                	<label for="SDT">Điện thoại <span style="color: red; font-size: 25px;font-weight: bold;">*</span></label>
-	                  <input name="SDT" required id="SDT" type="phone" class="form-control" placeholder="Vui lòng nhập số điện thoại của bạn..." style=" font-size: 18px;">
+	                  <input name="SoDienThoai" required id="SDT" type="phone" class="form-control" placeholder="Vui lòng nhập số điện thoại của bạn..." style=" font-size: 18px;">
 	                </div>
 	              </div>
 	              <div class="col-md-6">
@@ -171,7 +172,7 @@
 	          			<h3 class="billing-heading mb-4">Tổng số giỏ hàng</h3>
                           <p class="d-flex">
                               <span style="color: black;">Số Lượng Đã Đặt</span>
-                              <input name="PhiShip"
+                              <input name="TongSLDat"
                                   type="text" 
                                   readonly 
                                   style="
@@ -191,7 +192,7 @@
                                 <%= cartItemss.totalQuaty !== 0 ? cartItemss.totalQuaty : 0 %>
                                 Sản Phẩm</span>
 
-                                <input name="PhiShip"
+                                <input 
                                   type="text" 
                                   readonly 
                                   style="
@@ -304,6 +305,9 @@
         </div>
     	</div>
     </section>
+    <div id="custom-alert" class="custom-alert hidden">
+      <p id="alert-message"></p>
+    </div>
     <!-- END BODY --  CT CART -->
 
 
@@ -383,7 +387,7 @@
                 option += '<select id="state">';
                 option += '<option  style="color: blue; font-weight: bold;">Chọn Thành Phố</option>';
                 for (let i = 0; i < state_names.length; i++) {
-                    option += '<option  style="color: black;" value="'+state_names[i].code+'">'+state_names[i].name+'</option>';
+                    option += '<option  style="color: black;" value="'+state_names[i].name+'">'+state_names[i].name+'</option>';
                 }
                 option += '</select>';
                 id_state_option.innerHTML = option;
@@ -397,5 +401,62 @@
         })();
     </script>
     
+    <!-- thong bao dat hang thanh cong -->
+    <script>
+        // Hàm hiển thị thông báo tùy chỉnh
+		  function showCustomAlert(message) {
+        const alertElement = document.getElementById('custom-alert');
+        const messageElement = document.getElementById('alert-message');
+
+        // Hiển thị thông báo và đặt nội dung
+        alertElement.style.display = 'block';
+        messageElement.innerText = message;
+
+        // Ẩn thông báo sau một khoảng thời gian (ví dụ: 5 giây)
+        setTimeout(() => {
+            hideCustomAlert();
+            window.location.href = '/home';
+          }, 3000);
+      }
+
+        // Hàm ẩn thông báo tùy chỉnh
+        function hideCustomAlert() {
+          const alertElement = document.getElementById('custom-alert');
+
+          // Ẩn thông báo
+          alertElement.style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('dathang'); 
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the form from submitting in the traditional way
+
+                // Assuming you are using FormData to serialize the form data
+                const formData = new FormData(form);
+
+                // Make an AJAX request
+                fetch('/dat-hang', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showCustomAlert(data.message);
+                    } else {
+                        console.error('Error in dat-hang:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error in dat-hang:', error);
+                });
+            });
+        });
+
+
+    </script>
+  
   </body>
 </html>

@@ -79,6 +79,7 @@ const {
 
 const {
     hienThiFormCheckOut,
+    handleDatHang
 
 } = require("../controllers/checkOutController")
 
@@ -188,6 +189,8 @@ router.post("/update-taikhoan-admin", postUpdate_TKAdmin)
 // -----------  checkout 
 // hien thi form checkout
 router.get("/viewcheckout", hienThiFormCheckOut)
+// handle dat hang
+router.post("/dat-hang", handleDatHang)
 
 module.exports = router;
 
