@@ -77,6 +77,11 @@ const {
 
 } = require("../controllers/homeAdminQLTKAdmin")
 
+const {
+    hienThiFormCheckOut,
+
+} = require("../controllers/checkOutController")
+
 const router = express.Router();
 //  -------------------------------------------
 
@@ -179,6 +184,10 @@ router.get("/update-taikhoan-admin", hienThiFormUpdate_TKAdmin)
 // update tai khoan admin
 router.post("/update-taikhoan-admin", postUpdate_TKAdmin)
 
+
+// -----------  checkout 
+// hien thi form checkout
+router.get("/viewcheckout", hienThiFormCheckOut)
 
 module.exports = router;
 

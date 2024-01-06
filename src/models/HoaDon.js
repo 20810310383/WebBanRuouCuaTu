@@ -2,15 +2,20 @@ const mongoose = require("mongoose");
 const mongoose_delete = require('mongoose-delete');
 
 const HoaDon_Schema = new mongoose.Schema({
-  MaNV: { type: mongoose.SchemaTypes.ObjectId, ref: "NhanVien" },
   HoTen: { type: String },
-  DiaChi: { type: String },
+  QuocGia: { type: String },
+  ThanhPho: { type: String },
+  DiaChi_ChiTiet: { type: String },
   SDT: { type: String },
   Email: { type: String },
   PhiSanPham: { type: Number, default: 0 },
-  PhiShip: { type: Number, default: 0 },
+  PhiShip: { type: Number, default: 30000 },
   TongTien: { type: Number, default: 0 },
-  TinhTrangDonHang: { type: String, enum: ["Chưa giao", "Đã giao", "Đang giao"], default: "Chưa giao" },
+  TinhTrangDonHang: { 
+    type: String, 
+    enum: ["Chưa giao", "Đã giao", "Đang giao"], 
+    default: "Chưa giao" 
+  },
   NgayLap: { type: Date, default: Date.now(), immutable: true },
   MaKH: { type: mongoose.SchemaTypes.ObjectId, ref: "KhachHang" },
 });

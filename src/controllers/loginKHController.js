@@ -140,6 +140,10 @@ module.exports = {
         // res.redirect("/")
 
         if (req.session.taikhoan) {
+            if (req.session.cartId) {
+                // Nếu có giỏ hàng, xóa giỏ hàng
+                req.session.cartId = null;
+            }
             req.session.destroy();
         }
         res.redirect("/")

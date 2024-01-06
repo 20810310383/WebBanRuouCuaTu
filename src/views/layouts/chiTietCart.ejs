@@ -23,7 +23,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oL7JN3KMWF6dy0wKXPsej4lM4PUn3SLDuiZJ+LUEO4A=" crossorigin="anonymous"></script>
 
-
     <style>
       .nav-item.dropdown .nav-link {
         display: flex;
@@ -171,7 +170,7 @@
                                     <form action="/delete-detail-cart" method="post" style="display: inline;">
                                         <input type="hidden" name="idARemove" value="<%= spDetailCart._id %>">
                                         <!-- <button class="btn btn-danger button-SUA-XOA" >DELETE</button> -->
-                                        <button class="close" aria-label="Close" ><i class="fa fa-close"></i></button>
+                                        <button class="close" aria-label="Close" ><i style="color: red;" class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
 						    </tr>
@@ -186,17 +185,19 @@
     			<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
     					<h3>Tổng số giỏ hàng</h3>
+              <p class="d-flex">
+                <span >Số Lượng Đã Đặt</span>
+                <span style="color: blue; font-size: 18px;"><%= cartItemss.totalQuaty !== 0 ? cartItemss.totalQuaty : 0 %> </span>
+            </p>
     					<p class="d-flex">
-    						<span>Thuế Phí</span>
-    						<span>0</span>
-    					</p>
-    					<p class="d-flex">
-    						<span>Vận Chuyển</span>
-    						<span>0</span>
+    						<span>Tổng Giá 
+                  <%= cartItemss.totalQuaty !== 0 ? cartItemss.totalQuaty : 0 %>
+                  Sản Phẩm</span>
+    						<span style="color: blue; font-size: 18px;"><%= cartItemss.totalPrice !== 0 ? formatCurrency(cartItemss.totalPrice) : formatCurrency(0) %></span>
     					</p>
     					<p class="d-flex">
     						<span>Giảm Giá</span>
-    						<span>0</span>
+    						<span style="color: blue; font-size: 18px;">0</span>
     					</p>
     					<hr>
     					<p class="d-flex total-price">
@@ -206,7 +207,7 @@
                             </span>
     					</p>
     				</div>
-    				<p class="text-center"><a href="#" class="btn btn-primary py-3 px-4">Tiến hành kiểm tra</a></p>
+    				<p class="text-center"><a href="/viewcheckout" class="btn btn-primary py-3 px-4">Tiến hành kiểm tra</a></p>
     			</div>
     		</div>
     	</div>

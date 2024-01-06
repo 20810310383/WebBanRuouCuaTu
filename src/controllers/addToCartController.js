@@ -28,7 +28,7 @@ module.exports = {
             // Kiểm tra xem giỏ hàng đã tồn tại chưa, nếu chưa thì tạo mới
             let cart;
             let cartt = await Cart.find({}).populate('MaTKKH').exec();
-            console.log(">>> cartt:", cartt);
+            // console.log(">>> cartt:", cartt);
 
             // Nếu đăng nhập, sử dụng MaTKKH để liên kết với người dùng
             if (customerAccountId) {
@@ -147,7 +147,7 @@ module.exports = {
         let cartItemss = detailCart.cart 
 
         for (let i = 0; i < cartItemss.items.length; i++) {
-            console.log(`detailCart.items[${i}]._id:`, cartItemss.items[i]._id);
+            // console.log(`detailCart.items[${i}]._id:`, cartItemss.items[i]._id);
         }
 
         if (detailCart) {
@@ -157,7 +157,7 @@ module.exports = {
 
             for (const item of cartItems) {
 
-                console.log(`item._id: ${item._id}`);   // xem id can xoa
+                console.log(`item._id cần xóa: ${item._id}`);   // xem id can xoa
 
                 try {
                     const productDetails = await SanPham.findById(item.productId).exec();
