@@ -92,10 +92,9 @@ module.exports = {
             sessions=req.session
             console.log("sessions:",sessions)
 
-            let cart;
             if (user) {
                 // Nếu đã đăng nhập, kiểm tra xem có giỏ hàng trong database không
-                cart = await Cart.findOne({ 'MaTKKH': user._id });
+                let cart = await Cart.findOne({ 'MaTKKH': user._id });
 
                 if (!cart) {
                     cart = new Cart({

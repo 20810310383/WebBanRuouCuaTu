@@ -81,9 +81,19 @@ module.exports = {
                 // await Cart.findByIdAndDelete(req.session.cartId);
                 await Cart.deleteOne({_id: idcanxoa._id});
                 // await Cart.deleteById(req.session.cartId);
-    
+                
                 // Nếu có giỏ hàng, xóa giỏ hàng
                 req.session.cartId = null;
+
+                let cart = new Cart({
+                    cart: {
+                        items: [],
+                        totalPrice: 0,
+                        totalQuaty: 0,
+                    },
+                    MaTKKH: customerAccountId,
+                });
+                await cart.save()
                 res.status(201).json({ success: true, message: 'Bạn Đã Đặt Hàng Thành Công' });
             }else {
                 console.log("dat hang that bai");

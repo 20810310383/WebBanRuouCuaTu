@@ -53,7 +53,10 @@ module.exports = {
             const rootPath = '<%= rootPath.replace(/\\/g, "\\\\") %>';
             const relativePath = absolutePath ? absolutePath.replace(rootPath, '').replace(/\\/g, '/').replace(/^\/?images\/upload\//, '') : '';
             return relativePath;
-        }                
+        }         
+        
+        // --------
+       
 
         res.render("home.ejs", {
             soTrang: numPage, 
@@ -64,7 +67,7 @@ module.exports = {
             formatCurrency: formatCurrency, 
             rootPath: '/', 
             getRelativeImagePath: getRelativeImagePath,
-
+           
            
         })
     },
