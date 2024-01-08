@@ -83,6 +83,11 @@ const {
 
 } = require("../controllers/checkOutController")
 
+const {
+    getTrangQLDonHang,
+
+} = require("../controllers/quanLyDonHangController")
+
 const router = express.Router();
 //  -------------------------------------------
 
@@ -128,7 +133,7 @@ router.get("/dang-xuat-admin", getLogoutAdmin)
 router.get("/gethomeAdmin", getHomeAdmin)
 
 
-// qlsp
+// qlsp phia admin
 router.get("/home-qlsp", getHomeQLSP)
 // khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
 router.get("/home-qlsp", getHomePhanTrang)
@@ -154,16 +159,6 @@ router.get("/update-sp", hienThiFormUpdateSP)
 router.post("/update-sp", postUpdateSP)
 
 
-// them sp vao gio hang
-router.post("/addtocart", addToCart)
-// Lấy thông tin giỏ hàng (tổng số lượng và tổng tiền)
-router.get('/cart-info', getCartInfo)
-// get form chi tiet cart
-router.get('/detail-cart', getCTCart)
-// xóa 1 san pham trong chi tiet cart
-router.post('/delete-detail-cart', removeACTCart)
-
-
 // quan ly tai khoan admin
 router.get("/home-qltk-admin", getHomeQL_TKAdmin)
 // khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
@@ -185,12 +180,30 @@ router.get("/update-taikhoan-admin", hienThiFormUpdate_TKAdmin)
 // update tai khoan admin
 router.post("/update-taikhoan-admin", postUpdate_TKAdmin)
 
+// quan ly don hang -- admin
+router.get("/ql-don-hang", getTrangQLDonHang)
 
-// -----------  checkout 
+
+
+
+// them sp vao gio hang
+router.post("/addtocart", addToCart)
+// Lấy thông tin giỏ hàng (tổng số lượng và tổng tiền)
+router.get('/cart-info', getCartInfo)
+// get form chi tiet cart
+router.get('/detail-cart', getCTCart)
+// xóa 1 san pham trong chi tiet cart
+router.post('/delete-detail-cart', removeACTCart)
+
+
+// checkout and dat hang
 // hien thi form checkout
 router.get("/viewcheckout", hienThiFormCheckOut)
 // handle dat hang
 router.post("/dat-hang", handleDatHang)
+
+
+
 
 module.exports = router;
 
