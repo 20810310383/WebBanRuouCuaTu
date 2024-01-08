@@ -157,30 +157,30 @@
         });
 
         // ajax dang nhap
-        $("#login-form").submit(function (event) {
-            // event.preventDefault();
+        // $("#login-form").submit(function (event) {
+        //     // event.preventDefault();
 
-            $.ajax({
-                type: "POST",
-                url: "/dang-nhap-admin",
-                data: $(this).serialize(),
-                success: function (response) {
-                    // Kiểm tra xem đăng nhập có thành công hay không
-                    if (response.success) {
-                        // Hiển thị thông báo thành công
-                        window.location.href = '/gethomeAdmin';
-                    } else {
-                        // Hiển thị thông báo lỗi
-                        flashLibrary.showErrorMessage('Sai tài khoản hoặc mật khẩu.');
-                    }
-                },
-                error: function (error) {
-                    console.error(error);
-                    // Hiển thị thông báo lỗi
-                    flashLibrary.showErrorMessage('Sai tài khoản hoặc mật khẩu.');
-                },
-            });
-        });
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "/dang-nhap-admin",
+        //         data: $(this).serialize(),
+        //         success: function (response) {
+        //             // Kiểm tra xem đăng nhập có thành công hay không
+        //             if (response.success) {
+        //                 // Hiển thị thông báo thành công
+        //                 window.location.href = '/gethomeAdmin';
+        //             } else {
+        //                 // Hiển thị thông báo lỗi
+        //                 flashLibrary.showErrorMessage('Sai tài khoản hoặc mật khẩu.');
+        //             }
+        //         },
+        //         error: function (error) {
+        //             console.error(error);
+        //             // Hiển thị thông báo lỗi
+        //             flashLibrary.showErrorMessage('Sai tài khoản hoặc mật khẩu.');
+        //         },
+        //     });
+        // });
 
         var flashLibrary = {
             showSuccessMessage: function (message) {

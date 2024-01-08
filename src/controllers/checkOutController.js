@@ -48,18 +48,22 @@ module.exports = {
             const giaTriSo_GiamGia = parseInt(GiamGia.replace(/[^0-9]/g, ''));
             const giaTriSo_TongTien = parseInt(TongTien.replace(/[^0-9]/g, ''));
     
-            console.log(" HoTen:", HoTen, "\n QuocGia:", QuocGia, 
-            "\n ThanhPho:", ThanhPho, 
-            "\n DiaChi_ChiTiet:", DiaChi_ChiTiet, 
-            "\n SoDienThoai:", SoDienThoai, 
-            "\n Email:", Email, 
-            "\n TongSLDat:", TongSLDat, 
-            "\n PhiShip:", giaTriSo_PhiShip, 
-            "\n GiamGia:", giaTriSo_GiamGia, 
-            "\n TongTien:", giaTriSo_TongTien);
-    
             const customerAccountId = req.session.userId;
             console.log(">>> check id customerAccountId checkout: ", customerAccountId);
+
+            // --------------------------------------
+            let idcanxoa = await Cart.findOne({MaTKKH: customerAccountId})    
+            let cartId = idcanxoa._id
+            let giohang = await Cart.findById(cartId).populate('cart.items.productId')
+            console.log(">>> check giohang:",giohang);
+
+            const cartItems = giohang.cart.items
+            const cartTongTien = giohang.cart.totalPrice
+            const cartTongSL = giohang.cart.totalQuaty
+            
+            console.log(" cartItems: ", cartItems, 
+            "\n cartTongTien: ", cartTongTien,
+            "\n cartTongSL: ", cartTongSL);
     
             let datHang = await HoaDon.create({
                 HoTen: HoTen,
@@ -72,15 +76,21 @@ module.exports = {
                 PhiShip: giaTriSo_PhiShip,
                 GiamGia: giaTriSo_GiamGia,
                 TongTien: giaTriSo_TongTien,
-                MaKH: customerAccountId
-            })
-            let idcanxoa = await Cart.findOne({MaTKKH: customerAccountId})
-    
+                MaKH: customerAccountId,
+                cart: {
+                    items: cartItems.map(item => ({
+                        productId: item.productId._id,
+                        qty: item.qty
+                    })),
+                    totalPrice: cartTongTien,
+                    totalQuaty: cartTongSL,
+                }
+            })                
+                        
             if(datHang){
+
                 // khi login thì sẽ có giỏ hàng khi add, khi dat hang thanh cong đi sẽ xóa luôn trong db đi
-                // await Cart.findByIdAndDelete(req.session.cartId);
                 await Cart.deleteOne({_id: idcanxoa._id});
-                // await Cart.deleteById(req.session.cartId);
                 
                 // Nếu có giỏ hàng, xóa giỏ hàng
                 req.session.cartId = null;
@@ -94,6 +104,8 @@ module.exports = {
                     MaTKKH: customerAccountId,
                 });
                 await cart.save()
+
+
                 res.status(201).json({ success: true, message: 'Bạn Đã Đặt Hàng Thành Công' });
             }else {
                 console.log("dat hang that bai");

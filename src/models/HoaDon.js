@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const mongoose_delete = require('mongoose-delete');
 
 const HoaDon_Schema = new mongoose.Schema({
+  MaKH: { type: mongoose.SchemaTypes.ObjectId, ref: "KhachHang" },
   HoTen: { type: String },
   QuocGia: { type: String },
   ThanhPho: { type: String },
@@ -23,8 +24,28 @@ const HoaDon_Schema = new mongoose.Schema({
     enum: ["Đã Thanh Toán", "Chưa Thanh Toán"], 
     default: "Chưa Thanh Toán" 
   },
-  NgayLap: { type: Date, default: Date.now(), immutable: true },
-  MaKH: { type: mongoose.SchemaTypes.ObjectId, ref: "KhachHang" },
+  NgayLap: { type: Date, default: Date.now(), immutable: true },  
+  cart: {
+    items: [{
+        productId: {
+          type: mongoose.Types.ObjectId,
+          ref: 'SanPham',
+          required: true
+        },
+        qty: {
+          type: Number,
+          required: true
+        }
+    }],
+    totalPrice: {
+      type: Number,
+      default: 0  // Set a default value
+    },
+    totalQuaty: {
+        type: Number,
+        default: 0  // Set a default value
+    },
+  },
 });
 
 HoaDon_Schema.plugin(mongoose_delete);
