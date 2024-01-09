@@ -75,7 +75,7 @@
                 <!-- End of Topbar -->
                 
 
-                <div class="container py-5">                                    
+                <div class="container py-5" >                                    
                     <div class="p-5 bg-white rounded shadow mb-5">
                       <!-- Rounded tabs -->
                       <ul id="myTab" role="tablist" class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav">
@@ -111,10 +111,11 @@
                             <tbody>
                                 <!-- đơn thứ 1 -->
                                 <!-- Chưa giao hàng -->
+                                <% showHDChuaGiao.forEach(function(showHDChuaGiao, index) { %>  
                               <tr>
                                 <th scope="row">
-                                    <p style="color: blue;">659c2003e3247f1633fc9dfe</p>
-                                    <p>2023-12-05 02:52:40</p>
+                                    <p style="color: blue;"><%= showHDChuaGiao._id %></p>
+                                    <p><%= showHDChuaGiao.NgayLap %></p>
                                 </th>
                                 <td style="padding: 15px 20px;">                                    
                                     <p style="
@@ -126,25 +127,41 @@
                                     ">
                                         <i data-status="pending" class="fas fa-shopping-cart" style="font-size: 16px; color: rgb(22, 15, 1);"></i>
                                         &nbsp;
-                                        Chưa giao hàng
-                                    </p>                                  
-                                    <span style=" padding: 10px 0 0 10px;                                                                               
-                                        border: 1px solid red;
-                                        color: red;
-                                        border: none;
-                                        font-style: italic;
-                                    ">
-                                        &nbsp;
-                                        <i data-payment="unpaid" class="fas fa-exclamation-circle" style="font-size: 18px; color: red;"></i>
-                                        &nbsp;
-                                        Chưa thanh toán 
-                                    </span> </br> </br>                            
-                                    <p>( Phí vận chuyển: 30.000đ )</p>
+                                        <%= showHDChuaGiao.TinhTrangDonHang %>
+                                    </p>
+                                    <% if (showHDChuaGiao.TinhTrangThanhToan == "Chưa Thanh Toán") { %>
+                                        <span style=" padding: 10px 0 0 10px;                                                                               
+                                            border: 1px solid red;
+                                            color: red;
+                                            border: none;
+                                            font-style: italic;
+                                        ">
+                                            &nbsp;
+                                            <i data-payment="unpaid" class="fas fa-exclamation-circle" style="font-size: 18px; color: red;"></i>
+                                            &nbsp;
+                                            Chưa thanh toán 
+                                        </span>
+                                    <% } else { %>
+                                        <span style=" 
+                                            padding: 10px 0 0 10px;                                                                                                                           
+                                            color: rgb(18, 190, 32);
+                                            border: none;
+                                            font-style: italic;
+                                        ">
+                                            &nbsp;
+                                            <i data-status="delivered" class="fas fa-check-circle" style="font-size: 18px; color: green;"></i>
+                                            &nbsp;
+                                            Đã thanh toán 
+                                        </span>
+                                    <% } %>  
+                                    
+                                     </br> </br>                            
+                                    <p>( Phí vận chuyển: <%= formatCurrency(showHDChuaGiao.PhiShip) %> )</p>
                                 </td>
                                 <td>
-                                    <p>Số lượng: <span style="color: rgb(0, 0, 0);">18</span></p>
-                                    <p>TT: <span style="color: rgb(0, 0, 0);">399.000 đ</span></p>
-                                    <p>GTĐH: <span style="color: rgb(0, 0, 0);">429.000 đ</span></p>
+                                    <p>Số lượng: <span style="color: rgb(0, 0, 0);"> <%= showHDChuaGiao.TongSLDat %> </span></p>
+                                    <p>TT: <span style="color: rgb(0, 0, 0);"> <%= formatCurrency(showHDChuaGiao.cart.totalPrice) %>  </span></p>
+                                    <p>GTĐH: <span style="color: rgb(0, 0, 0);"><%= formatCurrency(showHDChuaGiao.TongTien) %></span></p>
                                 </td>
                                 <td style="text-align: center;vertical-align: middle;">
                                     <form action="">
@@ -154,31 +171,33 @@
                                         </button>                                        
                                     </form>                                    
                                     </br>   
-                                    <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide('showttsp1', this)">
+                                    <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide('<%= index %>', this)">
                                         <!-- Biểu tượng "view" -->
-                                        <i id="viewIcon1" title="Xem chi tiết" style="font-size: 25px; color: green;" ></i>
+                                        <i id="viewIcon<%= index %>" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye" ></i>
                                     </button>
                                 </td>
                               </tr>
+                              
 
                               <!-- thông tin địa chỉ khách hàng và tt sản phẩm đã đặt -->
+                              
                               <tr>
                                 <!-- <th scope="row">3</th> -->
                                 <td colspan="4">
                                     <!-- thông tin địa chỉ khách hàng -->
                                     <div style="padding: 5px 30px;">
-                                        <i title="User" class="fas fa-user"></i> 
+                                        <i title="Họ Tên Khách Hàng" class="fas fa-user"></i> 
                                         <span style="color: black; font-weight: bold; padding: 5px;">
-                                            Khắc Tú ( <i style="color: blue;" title="Phone" class="fas fa-phone"></i>  0972138493 ) / &nbsp;
-                                            <i style="color: green;" title="Location" class="fas fa-map-marker"></i> Lê Quang Đạo, Phú Đô, Hà Nội / &nbsp; 
-                                            <i style="color: navy;" title="City" class="fas fa-building"></i> Hà Nội / &nbsp; 
-                                            <i style="color: rgb(110, 33, 33);" title="Country" class="fas fa-globe"></i> Việt Nam
+                                            <%= showHDChuaGiao.HoTen %> ( <i style="color: blue;" title="Số Điện Thoại" class="fas fa-phone"></i>  <%= showHDChuaGiao.SoDienThoai %> ) / &nbsp;
+                                            <i style="color: green;" title="Địa Chỉ Chi Tiết" class="fas fa-map-marker"></i> <%= showHDChuaGiao.DiaChi_ChiTiet %> / &nbsp; 
+                                            <i style="color: navy;" title="Thành Phố" class="fas fa-building"></i> <%= showHDChuaGiao.ThanhPho %> / &nbsp; 
+                                            <i style="color: rgb(110, 33, 33);" title="Quốc Gia" class="fas fa-globe"></i> <%= showHDChuaGiao.QuocGia %>
                                         </span>
                                     </div>                                    
                                     <!-- end thông tin địa chỉ khách hàng -->  
                                     
                                     <!-- thông tin chi tiết sp đã đặt -->
-                                    <div style="padding: 5px 30px; display: none;" id="showttsp1">
+                                    <div style="padding: 5px 30px; display: none;" id="showttsp<%= index %>">
                                         <table class="table table-bordered" style="border: 1px solid;">
                                             <thead>
                                               <tr>
@@ -189,61 +208,32 @@
                                                 </th>
                                               </tr>
                                             </thead>
+                                            <% showHDChuaGiao.cart.items.forEach(function(ttSPChuaGiao) { %>
                                             <tbody>
+
                                                 <!-- sản phẩm 1 -->
                                               <tr>
-                                                <td>
-                                                    <table >
-                                                        <td style="padding: 0; border: none; width: 130px;">
-                                                            <img style="height: 170px; width: 150px;background-color: rgb(0, 146, 44);" src="images/bg_1.jpg" class="img-fluid" alt="Image">
-                                                        </td>
-                                                        <td style="border: none;"> 
-                                                            <p style="font-size: 20px; color: black; font-weight: bold;">Rượu Whisky Chivas Regal Ultis 1 Lít/40%</p>  
-                                                            <p style="font-size: 18px; color: rgb(151, 148, 148); ">
-                                                                Giá Bán: <span style="color: red;"> 229.000 đ</span>
-                                                            </p>  
-                                                        </td>
-                                                    </table>
-                                                </td>
-                                                <td  style="text-align: center;vertical-align: middle;">1000</td>
-                                                <td rowspan="1000">Khắc Tú</td>
-                                              </tr>
+                                                    <td>
+                                                        <table >
+                                                            <td style="padding: 0; border: none; width: 130px;">
+                                                                <img style="height: 170px; width: 150px;background-color: rgb(0, 146, 44);" src="images/upload/<%= getRelativeImagePath(ttSPChuaGiao.productId.Image) %>" class="img-fluid" alt="Image">
+                                                            </td>
+                                                            <td style="border: none;"> 
+                                                                <p style="font-size: 20px; color: black; font-weight: bold;"><%= ttSPChuaGiao.productId.TenSP %></p>  
+                                                                <p style="font-size: 18px; color: rgb(151, 148, 148); ">
+                                                                    Giá Bán: <span style="color: red;"> <%= formatCurrency(ttSPChuaGiao.productId.GiaBan) %></span>
+                                                                </p>  
+                                                            </td>
+                                                        </table>
+                                                    </td>
+                                                    <td style="text-align: center;vertical-align: middle;"><%= ttSPChuaGiao.qty %></td>
+                                                    <td style="text-align: center;vertical-align: middle;">
+                                                        <p> Phí vận chuyển: <span style="color: rgb(255, 0, 0);"><%= formatCurrency(showHDChuaGiao.PhiShip) %> </span></p>
+                                                        <p>Người nhận hàng: <span style="color: black;"><%= showHDChuaGiao.HoTen %></span> </p>
+                                                    </td>
+                                                </tr>
 
-                                              <!-- sản phẩm 2 -->
-                                              <tr>
-                                                <td>
-                                                    <table >
-                                                        <td style="padding: 0; border: none; width: 130px;">
-                                                            <img style="height: 170px; width: 150px;background-color: rgb(0, 146, 44);" src="images/bg_1.jpg" class="img-fluid" alt="Image">
-                                                        </td>
-                                                        <td style="border: none;"> 
-                                                            <p style="font-size: 20px; color: black; font-weight: bold;">Rượu Vang Calvet Hộp Quà Tết 2023 Loại 2</p>  
-                                                            <p style="font-size: 18px; color: rgb(151, 148, 148); ">
-                                                                Giá Bán: <span style="color: red;"> 229.000 đ</span>
-                                                            </p>  
-                                                        </td>
-                                                    </table>
-                                                </td>
-                                                <td  style="text-align: center;vertical-align: middle;">1000</td>
-                                              </tr>
-
-                                              <!-- sản phẩm 1 -->
-                                              <tr>
-                                                <td>
-                                                    <table >
-                                                        <td style="padding: 0; border: none; width: 130px;">
-                                                            <img style="height: 170px; width: 150px;background-color: rgb(0, 146, 44);" src="images/bg_1.jpg" class="img-fluid" alt="Image">
-                                                        </td>
-                                                        <td style="border: none;"> 
-                                                            <p style="font-size: 20px; color: black; font-weight: bold;">Vang Robert Mondavi Private Selection Cabernet Sauvignon</p>  
-                                                            <p style="font-size: 18px; color: rgb(151, 148, 148); ">
-                                                                Giá Bán: <span style="color: red;"> 229.000 đ</span>
-                                                            </p>  
-                                                        </td>
-                                                    </table>
-                                                </td>
-                                                <td  style="text-align: center;vertical-align: middle;">1000</td>
-                                              </tr>
+                                              <% }); %>
                                             </tbody>
                                           </table>
                                     </div>
@@ -251,12 +241,31 @@
                                 </td>
                                 
                               </tr>
+                              
+                              <% }); %> 
                               <!-- end thông tin địa chỉ khách hàng và tt sản phẩm đã đặt -->
                                          
                                                             
                             </tbody>
                           </table>
                             
+                          <!-- số trang ở đây -->
+                          <nav aria-label="...">
+                            <ul class="pagination">
+                              <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">2</a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item">
+                                <a class="page-link" href="#">&raquo;</a>
+                              </li>
+                            </ul>
+                          </nav>
+
                         </div>
                         <div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
                             <!-- <p class="text-muted">Đang giao hàng</p>
@@ -335,6 +344,23 @@
                                   </tr>
                                 </tbody>
                               </table>
+
+                              <!-- số trang ở đây -->
+                            <nav aria-label="...">
+                                <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">&raquo;</a>
+                                </li>
+                                </ul>
+                            </nav>
                         </div>
                         <div id="contact" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
                             <!-- <p class="text-muted">Đã giao hàng</p>
@@ -412,6 +438,23 @@
                                   </tr>
                                 </tbody>
                               </table>
+
+                              <!-- số trang ở đây -->
+                            <nav aria-label="...">
+                                <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">&raquo;</a>
+                                </li>
+                                </ul>
+                            </nav>
                         </div>
                       </div>
                       <!-- End rounded tabs -->
@@ -493,30 +536,19 @@
     </script>
 
     <!-- (ấn vào view để hiển thị thông tin sp đã đặt) -->
-    <script>
-        // Ẩn phần tử khi trang được tải và thay đổi icon mặc định
-        document.addEventListener('DOMContentLoaded', function () {
-            var element = document.getElementById('showttsp1');
-            var iconElement = document.getElementById('viewIcon1');
-    
-            if (element && iconElement) {
-                element.style.display = 'none';
-                // Thay đổi icon sang con mắt với gạch đỏ khi ẩn
-                iconElement.innerHTML = '<i id="viewIcon1" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye"></i>';
-            }
-        });
-    
+    <script>    
         // Hàm để toggle show/hide của phần tử có ID 'showttsp' và thay đổi icon
-        function toggleShowHide(elementId, iconElement) {
-            var element = document.getElementById(elementId);
+        function toggleShowHide(index, iconElement) {
+            var element = document.getElementById('showttsp' + index);
+            console.log("element: ", element);
             if (element.style.display === 'none' || element.style.display === '') {
                 element.style.display = 'block';
                 // Thay đổi icon sang con mắt khi show
-                iconElement.innerHTML = '<i id="viewIcon1" title="Ấn vào để thu gọn xem chi tiết" style="font-size: 25px; color: green;" class=" fas fa-eye"></i>';
+                iconElement.innerHTML = '<i id="viewIcon' + index + '" title="Ấn vào để thu gọn xem chi tiết" style="font-size: 25px; color: green;" class=" fas fa-eye"></i>';
             } else {
                 element.style.display = 'none';
                 // Thay đổi icon sang gạch chéo khi hide
-                iconElement.innerHTML = '<i id="viewIcon1" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye"></i>';
+                iconElement.innerHTML = '<i id="viewIcon' + index + '" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye"></i>';
             }
         }
     </script>

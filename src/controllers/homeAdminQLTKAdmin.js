@@ -12,7 +12,7 @@ const moment = require('moment-timezone');
 function convertToVietnamTime(dateTime) {
     // 'Asia/Ho_Chi_Minh' là mã của múi giờ Việt Nam
     return moment(dateTime).tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD HH:mm:ss');
-  }
+}
 
 module.exports = {
 
