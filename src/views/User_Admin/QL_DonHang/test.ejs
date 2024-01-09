@@ -142,9 +142,9 @@
                                     <p>( Phí vận chuyển: 30.000đ )</p>
                                 </td>
                                 <td>
-                                    <p>Số lượng: <span style="color: rgb(0, 0, 0);">18</span></p>
-                                    <p>TT: <span style="color: rgb(0, 0, 0);">399.000 đ</span></p>
-                                    <p>GTĐH: <span style="color: rgb(0, 0, 0);">429.000 đ</span></p>
+                                    <p>Số lượng: <span style="color: blue;">18</span></p>
+                                    <p>TT: <span style="color: rgb(255, 0, 0);">399.000 đ</span></p>
+                                    <p>GTĐH: <span style="color: rgb(255, 0, 0);">429.000 đ</span></p>
                                 </td>
                                 <td style="text-align: center;vertical-align: middle;">
                                     <form action="">
@@ -154,9 +154,9 @@
                                         </button>                                        
                                     </form>                                    
                                     </br>   
-                                    <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide('showttsp1', this)">
+                                    <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide('showttsp', this)">
                                         <!-- Biểu tượng "view" -->
-                                        <i id="viewIcon1" title="Xem chi tiết" style="font-size: 25px; color: green;" ></i>
+                                        <i id="viewIcon" title="Xem chi tiết" style="font-size: 25px; color: green;" ></i>
                                     </button>
                                 </td>
                               </tr>
@@ -178,7 +178,7 @@
                                     <!-- end thông tin địa chỉ khách hàng -->  
                                     
                                     <!-- thông tin chi tiết sp đã đặt -->
-                                    <div style="padding: 5px 30px; display: none;" id="showttsp1">
+                                    <div style="padding: 5px 30px; display: none;" id="showttsp">
                                         <table class="table table-bordered" style="border: 1px solid;">
                                             <thead>
                                               <tr>
@@ -321,10 +321,12 @@
                                             </button>                                        
                                         </form>                                    
                                         </br>   
-                                        <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide('showttsp', this)">
-                                            <!-- Biểu tượng "view" -->
-                                            <i id="viewIcon1" title="Xem chi tiết" style="font-size: 25px; color: green;" class=" fas fa-eye" ></i>
-                                        </button>                                                    
+                                        <form action="">
+                                            <button type="submit" style="border: none; background-color: white;">
+                                                <!-- Biểu tượng "view" -->
+                                                <i title="Xem chi tiết" style="font-size: 25px; color: green;" class="fas fa-eye"></i>
+                                            </button>
+                                        </form>                                                          
                                     </td>
                                   </tr>
     
@@ -399,10 +401,12 @@
                                             </button>                                        
                                         </form>                                    
                                         </br>   
-                                        <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide('showttsp', this)">
-                                            <!-- Biểu tượng "view" -->
-                                            <i id="viewIcon1" title="Xem chi tiết" style="font-size: 25px; color: green;" class=" fas fa-eye" ></i>
-                                        </button>                                                         
+                                        <form action="">
+                                            <button type="submit" style="border: none; background-color: white;">
+                                                <!-- Biểu tượng "view" -->
+                                                <i title="Xem chi tiết" style="font-size: 25px; color: green;" class="fas fa-eye"></i>
+                                            </button>
+                                        </form>                                                          
                                     </td>
                                   </tr>
                                   <tr>
@@ -496,13 +500,13 @@
     <script>
         // Ẩn phần tử khi trang được tải và thay đổi icon mặc định
         document.addEventListener('DOMContentLoaded', function () {
-            var element = document.getElementById('showttsp1');
-            var iconElement = document.getElementById('viewIcon1');
+            var element = document.getElementById('showttsp');
+            var iconElement = document.getElementById('viewIcon');
     
             if (element && iconElement) {
                 element.style.display = 'none';
                 // Thay đổi icon sang con mắt với gạch đỏ khi ẩn
-                iconElement.innerHTML = '<i id="viewIcon1" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye"></i>';
+                iconElement.innerHTML = '<i id="viewIcon" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye"></i>';
             }
         });
     
@@ -512,11 +516,11 @@
             if (element.style.display === 'none' || element.style.display === '') {
                 element.style.display = 'block';
                 // Thay đổi icon sang con mắt khi show
-                iconElement.innerHTML = '<i id="viewIcon1" title="Ấn vào để thu gọn xem chi tiết" style="font-size: 25px; color: green;" class=" fas fa-eye"></i>';
+                iconElement.innerHTML = '<i id="viewIcon" title="Ấn vào để thu gọn xem chi tiết" style="font-size: 25px; color: green;" class=" fas fa-eye"></i>';
             } else {
                 element.style.display = 'none';
                 // Thay đổi icon sang gạch chéo khi hide
-                iconElement.innerHTML = '<i id="viewIcon1" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye"></i>';
+                iconElement.innerHTML = '<i id="viewIcon" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye"></i>';
             }
         }
     </script>
