@@ -160,4 +160,24 @@ module.exports = {
         } 
     },
 
+    postDeleteDH: async (req, res) => {
+        try{
+            let idXoaDH = req.body.idXoaDH
+
+            let deleteDH = await HoaDon.deleteById(idXoaDH)
+
+            if (deleteDH) {
+                // res.status(200).json({ message: 'Xóa thành công.' });
+                res.redirect('/ql-don-hang'); 
+
+            } else {
+                res.status(404).send("Không tìm thấy tài khoản để xóa.");
+            }
+            
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ success: false,message: 'Internal server error' });
+        } 
+    },
+
 }

@@ -77,12 +77,19 @@
                     <!-- Biểu tượng "edit" -->
                     <i title="Chỉnh sửa" style="font-size: 25px; color: rgb(54, 54, 54);" class="fas fa-edit"></i>                
                 </a>                                    
-                </br>                                   
-                </br>   
+                </br> </br>                                  
                 <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide2('<%= index %>', this)">
                     <!-- Biểu tượng "view" -->
                     <i id="viewIcon2<%= index %>" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye" ></i>
                 </button>
+                </br> </br>
+                <form action="/delete-HoaDon" method="post">
+                    <button type="submit" style="border: none; background-color: white;">
+                        <input type="hidden" name="idXoaDH" value="<%= showHDDaGiao._id %>">
+                        <!-- Biểu tượng "view" -->
+                        <i title="Xóa Đơn Hàng" style="font-size: 20px;" class="fas fa-trash-alt"></i>                     
+                    </button>
+                </form>
           </td>
         </tr>
         

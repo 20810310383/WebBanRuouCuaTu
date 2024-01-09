@@ -48,6 +48,6 @@ const HoaDon_Schema = new mongoose.Schema({
     },
 });
 
-HoaDon_Schema.plugin(mongoose_delete);
+HoaDon_Schema.plugin(mongoose_delete, { overrideMethods: 'all' });
 
 module.exports = mongoose.model("HoaDon", HoaDon_Schema);

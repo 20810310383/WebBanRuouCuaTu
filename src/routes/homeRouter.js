@@ -88,6 +88,7 @@ const {
     getTrangQLDonHang_ChuaGiao_PhanTrang,
     getEditDH,
     postUpdate_QLDH,
+    postDeleteDH,
 
 
 } = require("../controllers/quanLyDonHangController")
@@ -192,6 +193,8 @@ router.get("/ql-don-hang", getTrangQLDonHang_ChuaGiao_PhanTrang)
 router.get("/update-HoaDon", getEditDH)
 // update don hang
 router.post("/update-HoaDon", postUpdate_QLDH)
+// update don hang da giao hang
+router.post("/delete-HoaDon", postDeleteDH)
 
 
 
