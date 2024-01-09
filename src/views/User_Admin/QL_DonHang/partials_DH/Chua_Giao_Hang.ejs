@@ -1,0 +1,210 @@
+<div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
+    <!-- <p class="text-muted">chưa giao hàng</p>
+    <p class="text-muted">chưa giao hàng</p>                           -->
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col" style="width: 20%;text-align: center;vertical-align: middle;">
+              Mã đơn hàng/ </br> 
+              Ngày đặt hàng
+          </th>
+          <th scope="col" style="text-align: center;vertical-align: middle;">Trạng thái</th>
+          <th scope="col" style="text-align: left;vertical-align: middle;">
+              Số lượng /</br>TT/GTĐH 
+              <span style="float: right;"><i title="Số lượng/Tổng tiền của sản phẩm/Giá trị đơn hàng" class="fas fa-info-circle"></i></span>
+          </th>
+          <th scope="col" style="text-align: center;vertical-align: middle;">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+          <!-- đơn thứ 1 -->
+          <!-- Chưa giao hàng -->
+          <% showHDChuaGiao.forEach(function(showHDChuaGiao, index) { %>  
+        <tr>
+          <th scope="row">
+              <p style="color: blue;"><%= showHDChuaGiao._id %></p>
+              <p><%= showHDChuaGiao.NgayLap %></p>
+          </th>
+          <td style="padding: 15px 20px;">                                    
+              <p style="
+                  background-color: rgb(255, 234, 234);                                             
+                  padding: 10px 15px;
+                  width: 190px;
+                  border: none;
+                  color: rgb(255, 0, 0);
+              ">
+                  <i data-status="pending" class="fas fa-shopping-cart" style="font-size: 16px; color: rgb(22, 15, 1);"></i>
+                  &nbsp;
+                  <%= showHDChuaGiao.TinhTrangDonHang %>
+              </p>
+              <% if (showHDChuaGiao.TinhTrangThanhToan == "Chưa Thanh Toán") { %>
+                  <span style=" padding: 10px 0 0 10px;                                                                               
+                      border: 1px solid red;
+                      color: red;
+                      border: none;
+                      font-style: italic;
+                  ">
+                      &nbsp;
+                      <i data-payment="unpaid" class="fas fa-exclamation-circle" style="font-size: 18px; color: red;"></i>
+                      &nbsp;
+                      Chưa thanh toán 
+                  </span>
+              <% } else { %>
+                  <span style=" 
+                      padding: 10px 0 0 10px;                                                                                                                           
+                      color: rgb(18, 190, 32);
+                      border: none;
+                      font-style: italic;
+                  ">
+                      &nbsp;
+                      <i data-status="delivered" class="fas fa-check-circle" style="font-size: 18px; color: green;"></i>
+                      &nbsp;
+                      Đã thanh toán 
+                  </span>
+              <% } %>  
+              
+               </br> </br>                            
+              <p>( Phí vận chuyển: <%= formatCurrency(showHDChuaGiao.PhiShip) %> )</p>
+          </td>
+          <td>
+              <p>Số lượng: <span style="color: rgb(0, 0, 0);"> <%= showHDChuaGiao.TongSLDat %> </span></p>
+              <p>TT: <span style="color: rgb(0, 0, 0);"> <%= formatCurrency(showHDChuaGiao.cart.totalPrice) %>  </span></p>
+              <p>GTĐH: <span style="color: rgb(0, 0, 0);"><%= formatCurrency(showHDChuaGiao.TongTien) %></span></p>
+          </td>
+          <td style="text-align: center;vertical-align: middle;">
+              <form action="">
+                  <button type="submit" style="border: none; background-color: white;">
+                      <!-- Biểu tượng "edit" -->
+                      <i title="Chỉnh sửa" style="font-size: 25px; color: rgb(54, 54, 54);" class="fas fa-edit"></i>
+                  </button>                                        
+              </form>                                    
+              </br>   
+              <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide('<%= index %>', this)">
+                  <!-- Biểu tượng "view" -->
+                  <i id="viewIcon<%= index %>" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye" ></i>
+              </button>
+          </td>
+        </tr>
+        
+
+        <!-- thông tin địa chỉ khách hàng và tt sản phẩm đã đặt -->
+        
+        <tr>
+          <!-- <th scope="row">3</th> -->
+          <td colspan="4">
+              <!-- thông tin địa chỉ khách hàng -->
+              <div style="padding: 5px 30px;">
+                  <i title="Họ Tên Khách Hàng" class="fas fa-user"></i> 
+                  <span style="color: black; font-weight: bold; padding: 5px;">
+                      <%= showHDChuaGiao.HoTen %> ( <i style="color: blue;" title="Số Điện Thoại" class="fas fa-phone"></i>  <%= showHDChuaGiao.SoDienThoai %> ) / &nbsp;
+                      <i style="color: green;" title="Địa Chỉ Chi Tiết" class="fas fa-map-marker"></i> <%= showHDChuaGiao.DiaChi_ChiTiet %> / &nbsp; 
+                      <i style="color: navy;" title="Thành Phố" class="fas fa-building"></i> <%= showHDChuaGiao.ThanhPho %> / &nbsp; 
+                      <i style="color: rgb(110, 33, 33);" title="Quốc Gia" class="fas fa-globe"></i> <%= showHDChuaGiao.QuocGia %>
+                  </span>
+              </div>                                    
+              <!-- end thông tin địa chỉ khách hàng -->  
+              
+              <!-- thông tin chi tiết sp đã đặt -->
+              <div style="padding: 5px 30px; display: none;" id="showttsp<%= index %>">
+                  <table class="table table-bordered" style="border: 1px solid;">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="table-active" style="text-align: center;vertical-align: middle;color: black; width: 500px;">Sản phẩm</th>
+                          <th scope="col" class="table-active" style="text-align: center;vertical-align: middle;color: black;">Số lượng</th>
+                          <th scope="col" class="table-active" style="text-align: center;vertical-align: middle;color: black; width: 250px;">
+                              Thông tin vận chuyển/ </br> Người nhận hàng
+                          </th>
+                        </tr>
+                      </thead>
+                      <% showHDChuaGiao.cart.items.forEach(function(ttSPChuaGiao) { %>
+                      <tbody>
+
+                          <!-- sản phẩm 1 -->
+                        <tr>
+                              <td>
+                                  <table >
+                                      <td style="padding: 0; border: none; width: 130px;">
+                                          <img style="height: 170px; width: 150px;background-color: rgb(0, 146, 44);" src="images/upload/<%= getRelativeImagePath(ttSPChuaGiao.productId.Image) %>" class="img-fluid" alt="Image">
+                                      </td>
+                                      <td style="border: none;"> 
+                                          <p style="font-size: 20px; color: black; font-weight: bold;"><%= ttSPChuaGiao.productId.TenSP %></p>  
+                                          <p style="font-size: 18px; color: rgb(151, 148, 148); ">
+                                              Giá Bán: <span style="color: red;"> <%= formatCurrency(ttSPChuaGiao.productId.GiaBan) %></span>
+                                          </p>  
+                                      </td>
+                                  </table>
+                              </td>
+                              <td style="text-align: center;vertical-align: middle;"><%= ttSPChuaGiao.qty %></td>
+                              <td style="text-align: center;vertical-align: middle;">
+                                  <p> Phí vận chuyển: <span style="color: rgb(255, 0, 0);"><%= formatCurrency(showHDChuaGiao.PhiShip) %> </span></p>
+                                  <p>Người nhận hàng: <span style="color: black;"><%= showHDChuaGiao.HoTen %></span> </p>
+                              </td>
+                          </tr>
+
+                        <% }); %>
+                      </tbody>
+                    </table>
+              </div>
+              <!-- end thông tin chi tiết sp đã đặt -->
+          </td>
+          
+        </tr>
+        
+        <% }); %> 
+        <!-- end thông tin địa chỉ khách hàng và tt sản phẩm đã đặt -->
+                   
+                                      
+      </tbody>
+    </table>
+      
+    <!-- số trang ở đây -->
+    <nav aria-label="...">
+      <ul class="pagination">
+          <% 
+              const pre = curPage <= 1 ? curPage : curPage - 1; 
+              const next = curPage >= soTrang ? curPage : parseInt(curPage) + 1            
+          %>
+
+          <li class="page-item disabled">
+              <a class="page-link" href="/ql-don-hang?page=<%=pre%>" tabindex="-1" aria-disabled="true">&laquo;</a>
+          </li>
+
+        <% for(var i=1; i <=soTrang; i++) { 
+          var active="" ; 
+          if(i == curPage) active="active" ; %>
+
+          <li class="page-item <%=active%>">
+              <a class="page-link" href="/ql-don-hang?page=<%=i%>">
+                  <%=i%>  
+              </a>
+          </li>
+
+          <% } %> 
+
+          <li class="page-item">
+              <a class="page-link" href="/ql-don-hang?page=<%=next%>">&raquo;</a>
+          </li>
+          
+      </ul>
+    </nav>
+
+  </div>
+
+  <!-- (ấn vào view để hiển thị thông tin sp đã đặt) -->
+  <script>
+    // Hàm để toggle show/hide của phần tử có ID 'showttsp' và thay đổi icon
+        // handle show/hide chưa giao hàng
+        function toggleShowHide(index, iconElement) {
+            var element = document.getElementById('showttsp' + index);
+            console.log("element: ", element);
+            if (element.style.display === 'none' || element.style.display === '') {
+                element.style.display = 'block';
+                // Thay đổi icon sang con mắt khi show
+                iconElement.innerHTML = '<i id="viewIcon' + index + '" title="Ấn vào để thu gọn xem chi tiết" style="font-size: 25px; color: green;" class=" fas fa-eye"></i>';
+            } else {
+                element.style.display = 'none';
+                // Thay đổi icon sang gạch chéo khi hide
+                iconElement.innerHTML = '<i id="viewIcon' + index + '" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye"></i>';
+            }
+        }
+  </script>

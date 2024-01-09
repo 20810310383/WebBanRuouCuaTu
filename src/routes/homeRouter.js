@@ -85,6 +85,8 @@ const {
 
 const {
     getTrangQLDonHang,
+    getTrangQLDonHang_ChuaGiao_PhanTrang,
+
 
 } = require("../controllers/quanLyDonHangController")
 
@@ -182,6 +184,9 @@ router.post("/update-taikhoan-admin", postUpdate_TKAdmin)
 
 // quan ly don hang -- admin
 router.get("/ql-don-hang", getTrangQLDonHang)
+// khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
+router.get("/ql-don-hang", getTrangQLDonHang_ChuaGiao_PhanTrang)
+
 
 
 
