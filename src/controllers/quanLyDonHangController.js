@@ -164,7 +164,7 @@ module.exports = {
         try{
             let idXoaDH = req.body.idXoaDH
 
-            let deleteDH = await HoaDon.deleteById(idXoaDH)
+            let deleteDH = await HoaDon.findByIdAndDelete(idXoaDH)
 
             if (deleteDH) {
                 // res.status(200).json({ message: 'Xóa thành công.' });
