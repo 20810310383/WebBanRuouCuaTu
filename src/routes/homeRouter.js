@@ -86,6 +86,8 @@ const {
 const {
     getTrangQLDonHang,
     getTrangQLDonHang_ChuaGiao_PhanTrang,
+    getEditDH,
+    postUpdate_QLDH,
 
 
 } = require("../controllers/quanLyDonHangController")
@@ -186,7 +188,10 @@ router.post("/update-taikhoan-admin", postUpdate_TKAdmin)
 router.get("/ql-don-hang", getTrangQLDonHang)
 // khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
 router.get("/ql-don-hang", getTrangQLDonHang_ChuaGiao_PhanTrang)
-
+// get form edit don hang
+router.get("/update-HoaDon", getEditDH)
+// update don hang
+router.post("/update-HoaDon", postUpdate_QLDH)
 
 
 

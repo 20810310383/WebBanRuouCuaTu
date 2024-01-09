@@ -72,17 +72,17 @@
               <p>GTĐH: <span style="color: rgb(0, 0, 0);"><%= formatCurrency(showHDDaGiao.TongTien) %></span></p>
           </td>
           <td style="text-align: center;vertical-align: middle;">
-              <form action="">
-                  <button type="submit" style="border: none; background-color: white;">
-                      <!-- Biểu tượng "edit" -->
-                      <i title="Chỉnh sửa" style="font-size: 25px; color: rgb(54, 54, 54);" class="fas fa-edit"></i>
-                  </button>                                        
-              </form>                                    
-              </br>   
-              <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide2('<%= index %>', this)">
-                  <!-- Biểu tượng "view" -->
-                  <i id="viewIcon2<%= index %>" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye" ></i>
-              </button>
+                <a                         
+                    href="/update-HoaDon?idUpdate_HD=<%= showHDDaGiao._id %>">
+                    <!-- Biểu tượng "edit" -->
+                    <i title="Chỉnh sửa" style="font-size: 25px; color: rgb(54, 54, 54);" class="fas fa-edit"></i>                
+                </a>                                    
+                </br>                                   
+                </br>   
+                <button type="button" style="border: none; background-color: white;" onclick="toggleShowHide2('<%= index %>', this)">
+                    <!-- Biểu tượng "view" -->
+                    <i id="viewIcon2<%= index %>" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye" ></i>
+                </button>
           </td>
         </tr>
         

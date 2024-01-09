@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Trang Admin Quản Lý</title>
+    <link rel="shortcut icon" href="User_KH/images/logo-KTT1.ico" type="image/x-icon">
+
+    <!-- Custom fonts for this template-->
+    <link href="User_Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="User_Admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .pagination-container {
+          display: flex;
+          justify-content: center;
+          margin-top: 50px;
+        }
+      
+        .pagination {
+          list-style: none;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        body {
+            background: #304352;
+            background: -webkit-linear-gradient(to right, #304352, #d7d2cc);
+            background: linear-gradient(to right, #304352, #d7d2cc);
+            /* min-height: 100vh; */
+        }
+
+            .nav-pills .nav-link {
+            color: #555;
+            }
+            .text-uppercase {
+            letter-spacing: 0.1em;
+            }
+      </style>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <%- include("../partials_admin/sidebar_navbar.ejs") %>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <%- include("../partials_admin/header_navbar.ejs") %>
+                <!-- End of Topbar -->
+                
+
+                <div class="container py-5" >                                    
+                    <div class="p-5 bg-white rounded shadow mb-5" >
+                        <h2 style="color: rgb(0, 17, 173); font-weight: bold;">
+                            CHỈNH SỬA ĐƠN HÀNG &nbsp;&nbsp; <span style="font-style: italic; font-size: 25px; color: gray; text-decoration: underline;">#<%= getId._id %></span>
+                        </h2>
+                      
+                        <form action="/update-HoaDon" method="post">
+                            <table>
+                                <tr>
+                                    <td><input type="hidden" name="id_QLDH" id="" value="<%= getId._id %>" ></td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 100px; font-size: 20px;">Tình Trạng Đơn Hàng</td>
+                                    <td style="height: 100px; padding:  20px;">
+                                        <select name="TinhTrangDonHang" class="form-select" aria-label="Default select example" style="height: 40px;">
+                                            <option style="color: blue;" selected><%= getId.TinhTrangDonHang %></option>                                           
+                                            <option value="Chưa giao hàng">Chưa giao hàng</option>
+                                            <option value="Đang giao hàng">Đang giao hàng</option>
+                                            <option value="Đã giao hàng">Đã giao hàng</option>                                            
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 100px; font-size: 20px;">Tình Trạng Thanh Toán</td>
+                                    <td style="height: 100px; padding:  20px;">
+                                        <select name="TinhTrangThanhToan" class="form-select" aria-label="Default select example" style="height: 40px;">
+                                            <option style="color: blue;" selected><%= getId.TinhTrangThanhToan %></option>  
+                                            <option value="Chưa Thanh Toán">Chưa Thanh Toán</option>
+                                            <option value="Đã Thanh Toán">Đã Thanh Toán</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr style="text-align: center;vertical-align: middle;">
+                                    <td colspan="2" style="text-align: center;vertical-align: middle;">
+                                        <a 
+                                            style="font-size: 22px; width: 100px; height: 50px; font-weight: bold; " 
+                                            href="/ql-don-hang"
+                                            class="btn btn-dark" >Trở Về </a>
+            
+                                        <button 
+                                            style="font-size: 22px; width: 300px; height: 50px; font-weight: bold; padding: 10px;" 
+                                            class="btn btn-primary">CHỈNH SỬA ĐƠN HÀNG
+                                        </button> 
+                                    </td>
+                                </tr>
+                            </table>
+                             
+                        </form>
+                      <!-- End rounded tabs -->
+                    </div>
+                </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn đăng xuất không?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Chọn nút "Đăng Xuất" để xác nhận đăng xuất tài khoản.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+                    <a class="btn btn-primary" href="/dang-xuat-admin">Đăng Xuất</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="User_Admin/vendor/jquery/jquery.min.js"></script>
+    <script src="User_Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="User_Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="User_Admin/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="User_Admin/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="User_Admin/js/demo/chart-area-demo.js"></script>
+    <script src="User_Admin/js/demo/chart-pie-demo.js"></script>
+
+
+
+</body>
+
+</html>

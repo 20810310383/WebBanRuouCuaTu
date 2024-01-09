@@ -120,4 +120,44 @@ module.exports = {
         })
     },
 
+    getEditDH: async (req, res) => {
+        var sessions = req.session;
+        let taikhoan = sessions.tk
+        let loggedIn = sessions.loggedIn
+
+        let idUpdate_HD = req.query.idUpdate_HD
+        console.log("idUpdate_HD",idUpdate_HD);
+        let getId = await HoaDon.findById({ _id: idUpdate_HD}).exec()
+        console.log("getId",getId._id);
+
+        res.render("User_Admin/QL_DonHang/formEditDH.ejs", {
+            logIn: loggedIn, 
+            taikhoan,
+            getId
+        })
+    },
+
+    postUpdate_QLDH: async (req, res) => {
+
+        try {
+            let id_QLDH = req.body.id_QLDH
+            let TinhTrangDonHang = req.body.TinhTrangDonHang
+            let TinhTrangThanhToan = req.body.TinhTrangThanhToan
+
+
+            let updateDH = await HoaDon.findByIdAndUpdate( {_id: id_QLDH}, {
+                TinhTrangDonHang, TinhTrangThanhToan
+            })
+
+            console.log("chinh sua updateDH: ", updateDH);
+            
+            // res.status(201).json({ success: true, message: 'Chỉnh sửa sản phẩm thành công' });
+            res.redirect('/ql-don-hang'); 
+
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ success: false,message: 'Internal server error' });
+        } 
+    },
+
 }
