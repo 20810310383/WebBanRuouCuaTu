@@ -61,78 +61,79 @@
                 <!-- Topbar -->
                 <%- include("../partials_admin/header_navbar.ejs") %>
                 <!-- End of Topbar -->
-
+                <div class="table-wrap" style="overflow-x: scroll">
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    
+                    <div class="container-fluid">
+                        
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <!-- <h1 class="h3 mb-0 text-gray-800">Trang quản lý tài khoản admin</h1> -->
-                        <a href="/create-taikhoan-admin" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Thêm tài khoản Admin</a>
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <!-- <h1 class="h3 mb-0 text-gray-800">Trang quản lý tài khoản admin</h1> -->
+                            <a href="/create-taikhoan-admin" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                    class="fas fa-download fa-sm text-white-50"></i> Thêm tài khoản Admin</a>
 
-                        <!-- Topbar Search -->
-                        <form action="/searchQL_TKAdmin" method="get"
-                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"  style="float: right; right: -320%;">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for account admin..."
-                                    aria-label="Search" aria-describedby="basic-addon2" name="searchAdmin">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
+                            <!-- Topbar Search -->
+                            <form action="/searchQL_TKAdmin" method="get"
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group"  style="float: right; right: -320%;">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for account admin..."
+                                        aria-label="Search" aria-describedby="basic-addon2" name="searchAdmin">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                
-                
-                    <!-- body -->
-                    <div class="row">
-                        <table class="table table-hover">
-                            <thead>                                
-                              <tr style="background-color: #DC143C; color: white; font-size: 18px; ">
-                                <th style="width: 150px;text-align: center; vertical-align: middle; width: 200px;">Tên Đăng Nhập</th>
-                                <th style="text-align: center; vertical-align: middle;">Mật Khẩu</th>
-                                <th style="text-align: center; vertical-align: middle;">Họ Tên</th>
-                                <th style="text-align: center; vertical-align: middle;">Ngày Tạo</th>
-                                <th style="text-align: center; vertical-align: middle;">Chức Năng</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                             
-                                  <!-- Hiển thị all sản phẩm  -->
-                                                                                                                                               
-                                  <% QLtaikhoan_admin.forEach(function(QLtaikhoan_admin, index) { %>
-                                      <tr style="font-weight: bold; color: #180766; font-size: 18px; text-align: center;">                                            
-                                            <td><%= QLtaikhoan_admin.TenDangNhap %></td>
-                                            <td>
-                                                <!-- Hiển thị mật khẩu -->
-                                                <span id="password<%= index %>">********</span>
-                                                
-                                                <!-- Icon ẩn/hiện mật khẩu -->
-                                                <i id="togglePasswordIcon<%= index %>" class="fas fa-eye" onclick="togglePassword('<%= index %>', '<%= QLtaikhoan_admin.MatKhau %>')"></i>
-                                            </td>
-                                                                                       
-                                            <td><%= QLtaikhoan_admin.HoTen %></td>
-                                            <td><%= QLtaikhoan_admin.NgayTao %></td>                                                                                                                                                                                                                                                                               
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                <a 
-                                                    class="btn btn-success button-SUA-XOA" 
-                                                    href="/update-taikhoan-admin?idUpdate_admin=<%= QLtaikhoan_admin._id %>">Chỉnh Sửa</a>   
+                            </form>
+                        </div>
+                    
+                        
+                        <!-- body -->
+                        <div class="row">                        
+                            <table class="table table-hover">
+                                <thead>                                
+                                <tr style="background-color: #DC143C; color: white; font-size: 18px; ">
+                                    <th style="width: 150px;text-align: center; vertical-align: middle; width: 200px;">Tên Đăng Nhập</th>
+                                    <th style="text-align: center; vertical-align: middle;">Mật Khẩu</th>
+                                    <th style="text-align: center; vertical-align: middle;">Họ Tên</th>
+                                    <th style="text-align: center; vertical-align: middle;">Ngày Tạo</th>
+                                    <th style="text-align: center; vertical-align: middle;">Chức Năng</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                
+                                    <!-- Hiển thị all sản phẩm  -->
+                                                                                                                                                
+                                    <% QLtaikhoan_admin.forEach(function(QLtaikhoan_admin, index) { %>
+                                        <tr style="font-weight: bold; color: #180766; font-size: 18px; text-align: center;">                                            
+                                                <td><%= QLtaikhoan_admin.TenDangNhap %></td>
+                                                <td>
+                                                    <!-- Hiển thị mật khẩu -->
+                                                    <span id="password<%= index %>">********</span>
                                                     
-                                                <form action="/delete-taikhoan-admin" method="post" style="display: inline;">
-                                                        <input type="hidden" name="idRemove_admin" value="<%= QLtaikhoan_admin._id %>">
-                                                        <button class="btn btn-danger button-SUA-XOA" >DELETE</button>
-                                                </form>
-                                            </td>                                  
-                                      </tr>
-                                      <% }); %>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                            </tbody>
-                          </table>
+                                                    <!-- Icon ẩn/hiện mật khẩu -->
+                                                    <i id="togglePasswordIcon<%= index %>" class="fas fa-eye" onclick="togglePassword('<%= index %>', '<%= QLtaikhoan_admin.MatKhau %>')"></i>
+                                                </td>
+                                                                                        
+                                                <td><%= QLtaikhoan_admin.HoTen %></td>
+                                                <td><%= QLtaikhoan_admin.NgayTao %></td>                                                                                                                                                                                                                                                                               
+                                                <td style="text-align: center; vertical-align: middle;">
+                                                    <a 
+                                                        class="btn btn-success button-SUA-XOA" 
+                                                        href="/update-taikhoan-admin?idUpdate_admin=<%= QLtaikhoan_admin._id %>">Chỉnh Sửa</a>   
+                                                        
+                                                    <form action="/delete-taikhoan-admin" method="post" style="display: inline;">
+                                                            <input type="hidden" name="idRemove_admin" value="<%= QLtaikhoan_admin._id %>">
+                                                            <button class="btn btn-danger button-SUA-XOA" >DELETE</button>
+                                                    </form>
+                                                </td>                                  
+                                        </tr>
+                                        <% }); %>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                                </tbody>
+                            </table>
+                        </div>
                     </div>                    
-                </div>
+                </div> 
                 <!-- /.container-fluid -->
                                     
                 <div class="pagination-container">

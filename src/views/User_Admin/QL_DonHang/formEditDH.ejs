@@ -74,56 +74,58 @@
                 <%- include("../partials_admin/header_navbar.ejs") %>
                 <!-- End of Topbar -->
                 
-
-                <div class="container py-5" >                                    
-                    <div class="p-5 bg-white rounded shadow mb-5" >
-                        <h2 style="color: rgb(0, 17, 173); font-weight: bold;">
-                            CHỈNH SỬA ĐƠN HÀNG &nbsp;&nbsp; <span style="font-style: italic; font-size: 25px; color: gray; text-decoration: underline;">#<%= getId._id %></span>
-                        </h2>
-                      
-                        <form action="/update-HoaDon" method="post">
-                            <table>
-                                <tr>
-                                    <td><input type="hidden" name="id_QLDH" id="" value="<%= getId._id %>" ></td>
-                                </tr>
-                                <tr>
-                                    <td style="height: 100px; font-size: 20px;">Tình Trạng Đơn Hàng</td>
-                                    <td style="height: 100px; padding:  20px;">
-                                        <select name="TinhTrangDonHang" class="form-select" aria-label="Default select example" style="height: 40px;">
-                                            <option style="color: blue;" selected><%= getId.TinhTrangDonHang %></option>                                           
-                                            <option value="Chưa giao hàng">Chưa giao hàng</option>
-                                            <option value="Đang giao hàng">Đang giao hàng</option>
-                                            <option value="Đã giao hàng">Đã giao hàng</option>                                            
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="height: 100px; font-size: 20px;">Tình Trạng Thanh Toán</td>
-                                    <td style="height: 100px; padding:  20px;">
-                                        <select name="TinhTrangThanhToan" class="form-select" aria-label="Default select example" style="height: 40px;">
-                                            <option style="color: blue;" selected><%= getId.TinhTrangThanhToan %></option>  
-                                            <option value="Chưa Thanh Toán">Chưa Thanh Toán</option>
-                                            <option value="Đã Thanh Toán">Đã Thanh Toán</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr style="text-align: center;vertical-align: middle;">
-                                    <td colspan="2" style="text-align: center;vertical-align: middle;">
-                                        <a 
-                                            style="font-size: 22px; width: 100px; height: 50px; font-weight: bold; " 
-                                            href="/ql-don-hang"
-                                            class="btn btn-dark" >Trở Về </a>
-            
-                                        <button 
-                                            style="font-size: 22px; width: 300px; height: 50px; font-weight: bold; padding: 10px;" 
-                                            class="btn btn-primary">CHỈNH SỬA ĐƠN HÀNG
-                                        </button> 
-                                    </td>
-                                </tr>
-                            </table>
-                             
-                        </form>
-                      <!-- End rounded tabs -->
+                <div class="table-wrap" style="overflow-x: scroll">
+                    <div class="container py-5" >                                    
+                        <div class="p-5 bg-white rounded shadow mb-5" >
+                            <h2 style="color: rgb(0, 17, 173); font-weight: bold;">
+                                CHỈNH SỬA ĐƠN HÀNG &nbsp;&nbsp; <span style="font-style: italic; font-size: 25px; color: gray; text-decoration: underline;">#<%= getId._id %></span>
+                            </h2>
+                        
+                            <form action="/update-HoaDon" method="post">
+                                <div class="table-wrap" style="overflow-x: scroll">
+                                    <table>
+                                        <tr>
+                                            <td><input type="hidden" name="id_QLDH" id="" value="<%= getId._id %>" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="height: 100px; font-size: 20px;">Tình Trạng Đơn Hàng</td>
+                                            <td style="height: 100px; padding:  20px;">
+                                                <select name="TinhTrangDonHang" class="form-select" aria-label="Default select example" style="height: 40px;">
+                                                    <option style="color: blue;" selected><%= getId.TinhTrangDonHang %></option>                                           
+                                                    <option value="Chưa giao hàng">Chưa giao hàng</option>
+                                                    <option value="Đang giao hàng">Đang giao hàng</option>
+                                                    <option value="Đã giao hàng">Đã giao hàng</option>                                            
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="height: 100px; font-size: 20px;">Tình Trạng Thanh Toán</td>
+                                            <td style="height: 100px; padding:  20px;">
+                                                <select name="TinhTrangThanhToan" class="form-select" aria-label="Default select example" style="height: 40px;">
+                                                    <option style="color: blue;" selected><%= getId.TinhTrangThanhToan %></option>  
+                                                    <option value="Chưa Thanh Toán">Chưa Thanh Toán</option>
+                                                    <option value="Đã Thanh Toán">Đã Thanh Toán</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr style="text-align: center;vertical-align: middle;">
+                                            <td colspan="2" style="text-align: center;vertical-align: middle;">
+                                                <a 
+                                                    style="font-size: 22px; width: 100px; height: 50px; font-weight: bold; " 
+                                                    href="/ql-don-hang"
+                                                    class="btn btn-dark" >Trở Về </a>
+                    
+                                                <button 
+                                                    style="font-size: 22px; width: 300px; height: 50px; font-weight: bold; padding: 10px;" 
+                                                    class="btn btn-primary">CHỈNH SỬA ĐƠN HÀNG
+                                                </button> 
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
+                        <!-- End rounded tabs -->
+                        </div>
                     </div>
                 </div>
             <!-- End of Main Content -->
