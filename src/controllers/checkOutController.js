@@ -67,7 +67,6 @@ module.exports = {
                             <p>Thành tiền cần thanh toán: <span style="color: red;">${TongTien}</span></p>
                             <p>Link Website của tôi: <a href="https://liquor-dokhactu.onrender.com">https://liquor-dokhactu.onrender.com</a></p>
                         `
-                    // text: `Cảm ơn bạn ${HoTen} đã đặt hàng!!\nĐơn hàng của bạn đã được xác nhận.\nTổng số lượng đặt : ${TongSLDat}\nPhí giao hàng: ${PhiShip}\nThành tiền cần thanh toán: ${TongTien}\nLink web của tôi: https://liquor-dokhactu.onrender.com`                        
                 };
               
                 return new Promise((resolve, reject) => {
