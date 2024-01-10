@@ -13,5 +13,5 @@ WEBSITE CÓ CÁC CHỨC NĂNG SAU:
   +  Phân trang thích hợp
   +  Thêm sản phẩm vào giỏ hàng
   +  Đặt hàng và Gửi xác nhận đơn hàng về email khách hàng
-==> Project đang phát triển thêm cho hoàn thiện...
+- Project đang phát triển thêm cho hoàn thiện...
 Cảm ơn bạn đã xem!
