@@ -62,9 +62,10 @@ module.exports = {
                     html: `
                             <p style="color: navy; font-size: 20px;">Cảm ơn bạn <span style="color: black; font-weight: bold; font-style: italic;">${HoTen} </span>đã đặt hàng!!</p>
                             <p style="color: green; font-style: italic;">Đơn hàng của bạn đã được xác nhận.</p>
-                            <p>Tổng số lượng đặt: ${TongSLDat}</p>
+                            <p>Tổng số lượng đặt: <span style="color: blue;">${TongSLDat}</span></p>
                             <p>Phí giao hàng: <span style="color: red;">${PhiShip}</span></p>
                             <p>Thành tiền cần thanh toán: <span style="color: red;">${TongTien}</span></p>
+                            <p>Địa chỉ nhận hàng: <span style="color: navy; font-style: italic;">${DiaChi_ChiTiet}</span></p>
                             <p>Link Website của tôi: <a href="https://liquor-dokhactu.onrender.com">https://liquor-dokhactu.onrender.com</a></p>
                         `
                 };
