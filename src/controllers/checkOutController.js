@@ -3,6 +3,8 @@ const Cart = require("../models/Cart")
 const HoaDon = require("../models/HoaDon")
 const mongoose = require('mongoose');
 require('rootpath')();
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 // --------------------------------------
 
@@ -42,6 +44,44 @@ module.exports = {
             let PhiShip = req.body.PhiShip
             let GiamGia = req.body.GiamGia
             let TongTien = req.body.TongTien
+
+            //---- GỬI XÁC NHẬN ĐƠN HÀNG VỀ EMAIL
+            const transporter = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                  user: process.env.EMAIL_USER,
+                  pass: process.env.EMAIL_PASS
+                }
+            });
+              
+            const sendOrderConfirmationEmail = async (toEmail) => {
+                const mailOptions = {
+                    from: 'Khắc Tú',
+                    to: toEmail,
+                    subject: 'Xác nhận đơn hàng của bạn.',
+                    html: `
+                            <p style="color: navy; font-size: 20px;">Cảm ơn bạn <span style="color: black; font-weight: bold; font-style: italic;">${HoTen} </span>đã đặt hàng!!</p>
+                            <p style="color: green; font-style: italic;">Đơn hàng của bạn đã được xác nhận.</p>
+                            <p>Tổng số lượng đặt: ${TongSLDat}</p>
+                            <p>Phí giao hàng: <span style="color: red;">${PhiShip}</span></p>
+                            <p>Thành tiền cần thanh toán: <span style="color: red;">${TongTien}</span></p>
+                            <p>Link Website của tôi: <a href="https://liquor-dokhactu.onrender.com">https://liquor-dokhactu.onrender.com</a></p>
+                        `
+                    // text: `Cảm ơn bạn ${HoTen} đã đặt hàng!!\nĐơn hàng của bạn đã được xác nhận.\nTổng số lượng đặt : ${TongSLDat}\nPhí giao hàng: ${PhiShip}\nThành tiền cần thanh toán: ${TongTien}\nLink web của tôi: https://liquor-dokhactu.onrender.com`                        
+                };
+              
+                return new Promise((resolve, reject) => {
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            reject(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                            resolve();
+                        }
+                    });
+                });
+            };
+            //-------------
     
             // Chuyển đổi từ chuỗi sang số
             const giaTriSo_PhiShip = parseInt(PhiShip.replace(/[^0-9]/g, ''));
@@ -88,6 +128,8 @@ module.exports = {
             })                
                         
             if(datHang){
+                // Gửi email thông báo đặt hàng thành công
+                await sendOrderConfirmationEmail(Email);
 
                 // khi login thì sẽ có giỏ hàng khi add, khi dat hang thanh cong đi sẽ xóa luôn trong db đi
                 await Cart.deleteOne({_id: idcanxoa._id});
