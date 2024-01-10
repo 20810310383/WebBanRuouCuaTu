@@ -91,7 +91,17 @@ const {
     postDeleteDH,
 
 
-} = require("../controllers/quanLyDonHangController")
+} = require("../controllers/quanLyDonHangController");
+
+const { 
+    getHomeQL_TKKH, 
+    getHomePhanTrang_TKKH, 
+    getSearchQL_TKKH, 
+    gethomeSearchQL_TKKH, 
+    remove_TKKH, 
+    hienThiFormUpdate_TKKH, 
+    postUpdate_TKKH 
+} = require('../controllers/homeAdminQLTK_KHController');
 
 const router = express.Router();
 //  -------------------------------------------
@@ -146,22 +156,17 @@ router.get("/home-qlsp", getHomePhanTrang)
 router.get("/searchQlsp", getSearchQLSP)
 // khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
 router.get("/searchQlsp", gethomeSearchQLSP)
-
-
 // xoa san pham
 router.post("/delete-sp", removeSP)
-
-
 // hien thi form create sp
 router.get("/create-sp", hienThiFormCreateSP)
 // insert san pham
 router.post("/create-sp", postCreateSP)
-
-
 // hien thi form update sp
 router.get("/update-sp", hienThiFormUpdateSP)
 // update san pham
 router.post("/update-sp", postUpdateSP)
+
 
 
 // quan ly tai khoan admin
@@ -174,16 +179,33 @@ router.get("/searchQL_TKAdmin", getSearchQL_TKAdmin)
 router.get("/searchQL_TKAdmin", gethomeSearchQL_TKAdmin)
 // xoa tai khoan admin
 router.post("/delete-taikhoan-admin", remove_TKAdmin)
-
 // hien thi form create tai khoan admin
 router.get("/create-taikhoan-admin", hienThiFormCreate_TKAdmin)
 // insert tai khoan admin
 router.post("/create-taikhoan-admin", postCreate_TKAdmin)
-
 // hien thi form update tai khoan admin
 router.get("/update-taikhoan-admin", hienThiFormUpdate_TKAdmin)
 // update tai khoan admin
 router.post("/update-taikhoan-admin", postUpdate_TKAdmin)
+
+
+
+// ---- quan ly tai khoan khach hang
+router.get("/home-qltk-kh", getHomeQL_TKKH)
+// khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
+router.get("/home-qltk-kh", getHomePhanTrang_TKKH)
+// form search quan ly tai khoan khach hang
+router.get("/searchQL_TKKH", getSearchQL_TKKH)
+// khi bấm vào trang khác thì chuyển hướng sao cho đúng logic ...
+router.get("/searchQL_TKKH", gethomeSearchQL_TKKH)
+// xoa tai khoan khach hang
+router.post("/delete-taikhoan-kh", remove_TKKH)
+// hien thi form update tai khoan khach hang
+router.get("/update-taikhoan-kh", hienThiFormUpdate_TKKH)
+// update tai khoan khach hang
+router.post("/update-taikhoan-kh", postUpdate_TKKH)
+
+
 
 // quan ly don hang -- admin
 router.get("/ql-don-hang", getTrangQLDonHang)
@@ -207,6 +229,7 @@ router.get('/cart-info', getCartInfo)
 router.get('/detail-cart', getCTCart)
 // xóa 1 san pham trong chi tiet cart
 router.post('/delete-detail-cart', removeACTCart)
+
 
 
 // checkout and dat hang
