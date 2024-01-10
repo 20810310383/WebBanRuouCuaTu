@@ -2,7 +2,7 @@ Link website: https://liquor-dokhactu.onrender.com/
 tài khoản & mật khẩu quản lý: admin
 tài khoản & mật khẩu khách hàng -> tự đăng ký 🤭
 
--  Cần cài: Docker, MongoDB Compass
+-  Cần cài: Docker, MongoDB Compass (cách connect và run, mình sẽ update sau ❣️)
 WEBSITE CÓ CÁC CHỨC NĂNG SAU:
   +  CRUD Products, User
   +  Quản lý về đơn hàng ...
