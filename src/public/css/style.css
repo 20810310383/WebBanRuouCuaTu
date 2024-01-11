@@ -10035,11 +10035,11 @@ textarea.form-control {
     }
 
     .loader #loader_page_img {
-      width: 150px; /* Điều chỉnh kích thước của loader */
-      height: 150px;
+      width: 160px; /* Điều chỉnh kích thước của loader */
+      height: 160px;
       position: absolute;
-      left: 40%; /* Di chuyển về giữa theo chiều ngang */
-      bottom: -5%; /* Chạm vào phía dưới */
+      left: 50%; /* Di chuyển về giữa theo chiều ngang */
+      top: 50%;
       transform: translateX(-50%); /* Dịch chuyển về trái 50% chiều ngang */
     }
     

@@ -1,6 +1,7 @@
 <div id="contact" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
     <!-- <p class="text-muted">chưa giao hàng</p>
     <p class="text-muted">chưa giao hàng</p>                           -->
+
     <div class="table-wrap" style="overflow-x: scroll">
         <table class="table table-bordered">
         <thead class="table-dark">
@@ -84,7 +85,7 @@
                         <i id="viewIcon2<%= index %>" title="Ấn vào để xem chi tiết" style="font-size: 25px; color: red; text-decoration: line-through;" class=" fas fa-eye" ></i>
                     </button>
                     </br> </br>
-                    <form action="/delete-HoaDon" method="post">
+                    <form action="/delete-HoaDon" method="post" id="dlt_hoadon">
                         <button type="submit" style="border: none; background-color: white;">
                             <input type="hidden" name="idXoaDH" value="<%= showHDDaGiao._id %>">
                             <!-- Biểu tượng "view" -->
@@ -219,3 +220,4 @@
         }
     }
 </script>
+
