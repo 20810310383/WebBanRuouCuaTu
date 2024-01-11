@@ -10039,7 +10039,7 @@ textarea.form-control {
       height: 160px;
       position: absolute;
       left: 50%; /* Di chuyển về giữa theo chiều ngang */
-      top: 50%;
+      top: 45%;
       transform: translateX(-50%); /* Dịch chuyển về trái 50% chiều ngang */
     }
     
