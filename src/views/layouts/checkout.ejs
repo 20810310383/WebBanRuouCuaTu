@@ -165,7 +165,10 @@
                 <div class="w-100"></div>
 
 	            </div>
-
+ <!-- Thêm loader.svg vào trang HTML -->
+ <div id="loader" class="loader">
+  <img id="loader_page_img" src="css/loader.svg" alt="Loader">
+</div>
 	          <div class="row mt-5 pt-3 d-flex">
 	          	<div class="col-md-6 d-flex">
 	          		<div class="cart-detail cart-total p-3 p-md-4">
@@ -263,8 +266,9 @@
                                     </span> -->
                                     
 		    					</p>
-					</div>
-	          	</div>
+					</div>          
+	          	</div>                               
+
 	          	<div class="col-md-6">
 	          		<div class="cart-detail p-3 p-md-4">
 	          			<h3 class="billing-heading mb-4">Phương thức thanh toán</h3>
@@ -299,6 +303,9 @@
 									<p><button style="font-size: 20px;" type="submit" class="btn btn-primary py-3 px-4">Tiến Hành Đặt Hàng</button></p>
 								</div>
 	          	</div>
+
+              
+
             </form><!-- END -->
 	          </div>
           </div> <!-- .col-md-8 -->
@@ -337,6 +344,25 @@
   <script src="js/main.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  <!-- xu ly loader page -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("dathang");
+      var loader = document.getElementById("loader");
+  
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+  
+        loader.style.display = "flex";
+  
+        setTimeout(function () {
+          loader.style.display = "none";
+          // Xử lý dữ liệu
+        }, 3500);
+      });
+    });
+  </script>
 
     <script>
         // format tiền tệ

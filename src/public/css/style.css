@@ -10019,3 +10019,27 @@ textarea.form-control {
     #alert-message {
       margin: 0; /* Để loại bỏ margin mặc định */
     }
+
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      display: none; 
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      /* position: relative; */
+    }
+
+    .loader #loader_page_img {
+      width: 150px; /* Điều chỉnh kích thước của loader */
+      height: 150px;
+      position: absolute;
+      left: 40%; /* Di chuyển về giữa theo chiều ngang */
+      bottom: -5%; /* Chạm vào phía dưới */
+      transform: translateX(-50%); /* Dịch chuyển về trái 50% chiều ngang */
+    }
+    
