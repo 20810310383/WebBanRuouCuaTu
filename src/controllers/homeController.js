@@ -17,6 +17,7 @@ module.exports = {
     getHomePage: async (req, res) => {
         var sessions = req.session;
         let taikhoan = sessions.taikhoan
+        let hoten = sessions.hoten
         // let loggedIn = sessions.loggedIn
         let loggedIn = req.session.loggedIn ? true : false;
         
@@ -63,7 +64,7 @@ module.exports = {
             curPage: page, 
             allSP: all, 
             logIn: loggedIn, 
-            taikhoan, 
+            taikhoan, hoten,
             formatCurrency: formatCurrency, 
             rootPath: '/', 
             getRelativeImagePath: getRelativeImagePath,

@@ -1,22 +1,18 @@
 const SanPham = require("../models/SanPham")
 const Cart = require("../models/Cart")
+const HoaDon = require("../models/HoaDon")
+const mongoose = require('mongoose');
 require('rootpath')();
-
-const aqp = require('api-query-params')
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 // --------------------------------------
 
 module.exports = {
-    chiTietSP: async (req, res) => {
+    hienThiFormHistoryOrder: async (req, res) => {
         var sessions = req.session;
-        let taikhoan = sessions.taikhoan
+        let loggedIn = sessions.loggedIn
         let hoten = sessions.hoten
-        // let loggedIn = sessions.loggedIn
-        let loggedIn = req.session.loggedIn ? true : false;        
-
-        let id = req.query.idCTSP
-
-        let ctsp = await SanPham.findById({_id: id}).exec();
 
         // Hàm để định dạng số tiền thành chuỗi có ký tự VND
         function formatCurrency(amount) {
@@ -28,18 +24,16 @@ module.exports = {
             const rootPath = '<%= rootPath.replace(/\\/g, "\\\\") %>';
             const relativePath = absolutePath ? absolutePath.replace(rootPath, '').replace(/\\/g, '/').replace(/^\/?images\/upload\//, '') : '';
             return relativePath;
-        }                    
+        }
 
-        res.render("layouts/chiTietSP.ejs", {
-            CTSP: ctsp, 
-            formatCurrency: formatCurrency, 
-            rootPath: '/', 
-            getRelativeImagePath: getRelativeImagePath,
+
+
+        res.render("layouts/orderHistory.ejs", {
+            rootPath: '/',
+            formatCurrency, 
+            getRelativeImagePath,
             logIn: loggedIn, 
-            taikhoan, hoten,
-
+            hoten,
         })
-        
-    },    
-
+    },
 }

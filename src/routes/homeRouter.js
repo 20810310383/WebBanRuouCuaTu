@@ -102,6 +102,7 @@ const {
     hienThiFormUpdate_TKKH, 
     postUpdate_TKKH 
 } = require('../controllers/homeAdminQLTK_KHController');
+const { hienThiFormHistoryOrder } = require('../controllers/orderHistoryController');
 
 const router = express.Router();
 //  -------------------------------------------
@@ -239,7 +240,8 @@ router.get("/viewcheckout", hienThiFormCheckOut)
 router.post("/dat-hang", handleDatHang)
 
 
-
+// lich su don dat hang
+router.get("/order-history", hienThiFormHistoryOrder)
 
 module.exports = router;
 

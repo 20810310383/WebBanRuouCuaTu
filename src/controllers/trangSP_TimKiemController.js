@@ -21,6 +21,7 @@ module.exports = {
         var sessions = req.session;
         let taikhoan = sessions.taikhoan
         let loggedIn = sessions.loggedIn
+        let hoten = sessions.hoten
         let ten = sessions.ten
         
         console.log(sessions);
@@ -99,7 +100,7 @@ module.exports = {
             menuCon: menuCon,
             loaiSP: loaiSP,
             logIn: loggedIn, 
-            taikhoan
+            taikhoan, hoten,
         })
     },
 
@@ -115,6 +116,7 @@ module.exports = {
         var sessions = req.session;
         let taikhoan = sessions.taikhoan
         let loggedIn = sessions.loggedIn
+        let hoten = sessions.hoten
      
 
         let loaiSP = await LoaiSP.find({}).exec();
@@ -194,7 +196,7 @@ module.exports = {
             menuCon: menuCon,
             loaiSP: loaiSP,
             logIn: loggedIn, 
-            taikhoan,
+            taikhoan, hoten,
             searchSP1: req.session.tenSPSearch || '',
         })
     },

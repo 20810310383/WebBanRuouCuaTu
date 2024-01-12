@@ -127,6 +127,7 @@ module.exports = {
         var sessions = req.session;
         let taikhoan = sessions.taikhoan
         let loggedIn = sessions.loggedIn
+        let hoten = sessions.hoten
 
         // Hàm để định dạng số tiền thành chuỗi có ký tự VND
         function formatCurrency(amount) {
@@ -194,7 +195,7 @@ module.exports = {
             rootPath: '/', 
             getRelativeImagePath: getRelativeImagePath,
             logIn: loggedIn, 
-            taikhoan, 
+            taikhoan, hoten,
             productDetails: productDetailsArray,
             cartItemss: cartItemss,
         })
