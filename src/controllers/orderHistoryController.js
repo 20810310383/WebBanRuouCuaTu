@@ -28,7 +28,7 @@ module.exports = {
 
 
 
-        res.render("layouts/orderHistory.ejs", {
+        res.render("layouts/OrderHistory/orderHistory.ejs", {
             rootPath: '/',
             formatCurrency, 
             getRelativeImagePath,
