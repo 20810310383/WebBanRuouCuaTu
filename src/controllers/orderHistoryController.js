@@ -13,6 +13,7 @@ module.exports = {
         var sessions = req.session;
         let loggedIn = sessions.loggedIn
         let hoten = sessions.hoten
+        let diachi = sessions.diachi
 
         // Hàm để định dạng số tiền thành chuỗi có ký tự VND
         function formatCurrency(amount) {
@@ -33,7 +34,7 @@ module.exports = {
             formatCurrency, 
             getRelativeImagePath,
             logIn: loggedIn, 
-            hoten,
+            hoten, diachi,
         })
     },
 }

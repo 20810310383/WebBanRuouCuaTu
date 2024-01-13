@@ -87,6 +87,7 @@ module.exports = {
             req.session.loggedIn = true
             req.session.taikhoan = taikhoan
             req.session.hoten = user.HoTen
+            req.session.diachi = user.DiaChi
             req.session.userId = user._id
             req.user = { _id: user._id };
 

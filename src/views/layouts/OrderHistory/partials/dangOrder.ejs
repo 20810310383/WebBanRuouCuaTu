@@ -1,0 +1,30 @@
+<div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news-tab">
+    <div class="container-fluid">
+      <h2 class="mb-3 font-weight-bold">Đang giao hàng</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor leo nec ligula viverra, quis facilisis nunc vehicula. Maecenas purus orci, efficitur in dapibus vel, rutrum in massa. Sed auctor urna sit amet eros mattis interdum. Integer imperdiet ante in quam lacinia, a laoreet risus imperdiet.</p>
+      <p>Proin maximus iaculis rhoncus. Morbi ante nibh, facilisis semper faucibus consequat, facilisis ut ante. Mauris at nisl vitae justo auctor imperdiet. Cras sodales, justo sed tincidunt venenatis, ante erat ultricies eros, at mollis eros lorem ac mi. Fusce sagittis nibh nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec mollis eros sodales convallis faucibus. Vestibulum sit amet odio lectus. Duis eu dolor vitae est venenatis viverra eu sit amet nisl. Aenean vel sagittis odio. Quisque in lacus orci. Etiam ut odio lobortis odio consectetur ornare.</p>
+    </div>
+  </div>
+
+       <!-- Thêm loader.svg vào trang HTML -->
+ <div id="loader" class="loader">
+    <img id="loader_page_img" src="css/loader.svg" alt="Loader">
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var dang = document.getElementById("pills-news-tab");
+      var loader = document.getElementById("loader");
+  
+      dang.addEventListener("click", function (event) {
+        event.preventDefault();
+  
+        loader.style.display = "flex";
+  
+        setTimeout(function () {
+          loader.style.display = "none";
+          // Xử lý dữ liệu
+        }, 500);
+      });
+    });
+  </script>

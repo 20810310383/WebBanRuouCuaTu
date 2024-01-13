@@ -1,0 +1,31 @@
+<div class="tab-pane fade" id="pills-product" role="tabpanel" aria-labelledby="pills-product-tab">
+    <div class="container-fluid">
+      <h2 class="mb-3 font-weight-bold">Chưa giao hàng</h2>
+      <p>Sed auctor urna sit amet eros mattis interdum. Integer imperdiet ante in quam lacinia, a laoreet risus imperdiet. Ut a blandit elit, vitae volutpat nunc. Nam posuere urna sagittis lectus eleifend viverra. Quisque mauris nunc, viverra vitae sodales non, auctor in diam. Sed dignissim pulvinar sapien sed fermentum. Praesent interdum turpis ut neque tristique ornare. Nam dictum est sed sem elementum rutrum. Nam a mollis turpis.</p>
+      <p>Proin odio nisi, aliquet ac ipsum quis, auctor semper leo. Curabitur vitae justo vel augue varius cursus non quis est. Nunc vulputate nunc nibh, sed tempus erat tincidunt eget. Duis a lacus at nulla porttitor tincidunt. Vestibulum euismod elementum mi ut tincidunt. Suspendisse tempus, mi et imperdiet maximus, est turpis placerat massa, at venenatis sem elit ut ex. Donec non aliquam odio. Curabitur ut leo vitae magna lobortis accumsan. Phasellus viverra eu leo non rhoncus.</p>
+      <p>Pellentesque rutrum sit amet nunc sit amet faucibus. Ut id arcu tempus, varius erat et, ornare libero. In quis felis nunc. Aliquam euismod lacus a eros ornare, ut aliquam sem mattis. Cras non varius dui, quis commodo ante. Maecenas gravida est non nulla malesuada egestas.</p>
+    </div>
+  </div>
+
+     <!-- Thêm loader.svg vào trang HTML -->
+ <div id="loader" class="loader">
+    <img id="loader_page_img" src="css/loader.svg" alt="Loader">
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var chua = document.getElementById("pills-product-tab");
+      var loader = document.getElementById("loader");
+  
+      chua.addEventListener("click", function (event) {
+        event.preventDefault();
+  
+        loader.style.display = "flex";
+  
+        setTimeout(function () {
+          loader.style.display = "none";
+          // Xử lý dữ liệu
+        }, 500);
+      });
+    });
+  </script>
