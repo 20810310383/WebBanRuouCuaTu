@@ -1,9 +1,117 @@
 <div class="tab-pane fade" id="pills-product" role="tabpanel" aria-labelledby="pills-product-tab">
     <div class="container-fluid">
-      <h2 class="mb-3 font-weight-bold">Chưa giao hàng</h2>
-      <p>Sed auctor urna sit amet eros mattis interdum. Integer imperdiet ante in quam lacinia, a laoreet risus imperdiet. Ut a blandit elit, vitae volutpat nunc. Nam posuere urna sagittis lectus eleifend viverra. Quisque mauris nunc, viverra vitae sodales non, auctor in diam. Sed dignissim pulvinar sapien sed fermentum. Praesent interdum turpis ut neque tristique ornare. Nam dictum est sed sem elementum rutrum. Nam a mollis turpis.</p>
-      <p>Proin odio nisi, aliquet ac ipsum quis, auctor semper leo. Curabitur vitae justo vel augue varius cursus non quis est. Nunc vulputate nunc nibh, sed tempus erat tincidunt eget. Duis a lacus at nulla porttitor tincidunt. Vestibulum euismod elementum mi ut tincidunt. Suspendisse tempus, mi et imperdiet maximus, est turpis placerat massa, at venenatis sem elit ut ex. Donec non aliquam odio. Curabitur ut leo vitae magna lobortis accumsan. Phasellus viverra eu leo non rhoncus.</p>
-      <p>Pellentesque rutrum sit amet nunc sit amet faucibus. Ut id arcu tempus, varius erat et, ornare libero. In quis felis nunc. Aliquam euismod lacus a eros ornare, ut aliquam sem mattis. Cras non varius dui, quis commodo ante. Maecenas gravida est non nulla malesuada egestas.</p>
+      <table>
+        <% if (chuaGiao.length > 0) { %>
+        <% chuaGiao.forEach(function(chuaGiao, index) { %>  
+        <tr style="width: 100%; border-bottom: 20px solid rgb(245, 245, 245);">   
+
+            <td style="width: 200px; background-color: white; ">
+                <div style="background-color: rgb(255, 255, 255); ">
+                    <img width="180" height="200" src="images/upload/<%= getRelativeImagePath(chuaGiao.cart.items[0].productId.Image) %>" alt="">
+                </div>
+            </td>
+            <td style="width: 560px; background-color: white;">                    
+                    <p style="font-weight: bold; font-size: 22px; color: black;">
+                        <a style="color: navy;" href="/ctsp?idCTSP=<%= chuaGiao.cart.items[0].productId._id %>"><%= chuaGiao.cart.items[0].productId.TenSP %></a>
+                    </p>
+                    
+                    <% if (chuaGiao.cart.items.length > 1) { %>
+                        <p style="font-size: 16px;color: rgb(80, 80, 80);">và <%= chuaGiao.cart.items.length - 1 %> sản phẩm khác</p>
+                    <% } %>
+
+                    <% if (chuaGiao.TinhTrangDonHang == 'Chưa giao hàng') { %>
+                    <span style="
+                        background-color: rgb(255, 234, 234);                                             
+                        padding: 8px 10px;
+                        width: 190px;
+                        border: none;
+                        font-size: 16px;
+                        color: rgb(255, 0, 0);                            
+                    "class="text-danger ">
+                        <i data-status="pending" class="fas fa-shopping-cart" style="font-size: 16px; color: rgb(22, 15, 1);"></i>
+                        &nbsp;
+                        <%= chuaGiao.TinhTrangDonHang %>
+                    </span>
+
+                    <% } else if (chuaGiao.TinhTrangDonHang == 'Đang giao hàng') { %>
+                    <span style="
+                        background-color: rgb(255, 217, 0);                                             
+                        padding: 5px 10px;
+                        width: 170px;
+                        border: 2px solid rgb(255, 217, 0);
+                        font-size: 16px;
+                        color: black;
+                ">
+                    <i data-status="shipping" class="fas fa-truck" style="font-size: 16px; color: rgb(0, 0, 0);"></i>
+                    &nbsp;
+                    <%= chuaGiao.TinhTrangDonHang %>
+                    </span>
+
+                    <% } else { %>
+                    <span style="
+                            background-color: rgb(209, 255, 209);                                             
+                            padding: 5px 10px;
+                            width: 150px;
+                            border: 2px solid  rgb(209, 255, 209);
+                            font-size: 16px;
+                            color: rgb(0, 128, 9);
+                    ">
+                        <i data-status="delivered" class="fas fa-check-circle" style="font-size: 16px; color: rgb(0, 0, 0);"></i>
+                        &nbsp;
+                        <%= chuaGiao.TinhTrangDonHang %>
+                    </span>
+
+                    <% } %>                        
+
+                    &nbsp; &&
+                    <% if (chuaGiao.TinhTrangThanhToan == 'Chưa Thanh Toán') { %>
+                    <span style=" padding: 10px 0 0 10px;                                                                               
+                        border: 1px solid red;
+                        color: red;
+                        border: none;
+                        font-size: 17px;
+                        text-decoration: underline;
+                        font-style: italic;
+                    ">                          
+                      <%= chuaGiao.TinhTrangThanhToan %>
+                    </span>
+
+                    <% } else { %>
+                    <span style=" 
+                        padding: 10px 0 0 10px;                                                                                                                           
+                        color: rgb(18, 190, 32);
+                        border: none;
+                        font-size: 17px;
+                        text-decoration: underline;
+                        font-style: italic;
+                    ">
+                        <%= chuaGiao.TinhTrangThanhToan %>
+                    </span>
+
+                    <% } %>
+                    
+                    
+                <p style="font-weight: bold; font-size: 20px; color: rgb(255, 0, 0); position: relative;top: 20px; left: 30px;">
+                    <%= formatCurrency( chuaGiao.cart.items[0].productId.GiaBan * chuaGiao.cart.items[0].qty ) %>
+                </p>
+               
+            </td>
+            <td style="width: 380px; background-color: white;">
+                <div style="position: relative; top: 60px; float: right; right: 20px;">
+                    <form action="" style="display: inline-block; margin-left: 10px;">
+                        <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
+                    </form>
+                    <a href="/chi-tiet-dh?xemcthd=<%= chuaGiao._id %>" class="btn btn-success" style="display: inline-block;">Xem chi tiết hóa đơn</a>
+                </div> 
+            </td>
+            
+        </tr>
+        <% }); %> 
+        <% } else { %>
+            <p>Chưa có sản phẩm nào</p>
+        <% } %>
+
+    </table>
     </div>
   </div>
 

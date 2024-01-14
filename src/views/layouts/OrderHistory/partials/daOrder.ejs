@@ -1,8 +1,117 @@
 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
     <div class="container-fluid">
-      <h2 class="mb-3 font-weight-bold">Đã giao hàng</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor leo nec ligula viverra, quis facilisis nunc vehicula. Maecenas purus orci, efficitur in dapibus vel, rutrum in massa. Sed auctor urna sit amet eros mattis interdum. Integer imperdiet ante in quam lacinia, a laoreet risus imperdiet.</p>
-      <p>Proin maximus iaculis rhoncus. Morbi ante nibh, facilisis semper faucibus consequat, facilisis ut ante. Mauris at nisl vitae justo auctor imperdiet. Cras sodales, justo sed tincidunt venenatis, ante erat ultricies eros, at mollis eros lorem ac mi. Fusce sagittis nibh nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec mollis eros sodales convallis faucibus. Vestibulum sit amet odio lectus. Duis eu dolor vitae est venenatis viverra eu sit amet nisl. Aenean vel sagittis odio. Quisque in lacus orci. Etiam ut odio lobortis odio consectetur ornare.</p>
+      <table>
+        <% if (daGiao.length > 0) { %>
+        <% daGiao.forEach(function(daGiao, index) { %>  
+        <tr style="width: 100%; border-bottom: 20px solid rgb(245, 245, 245);">   
+
+            <td style="width: 200px; background-color: white; ">
+                <div style="background-color: rgb(255, 255, 255); ">
+                    <img width="180" height="200" src="images/upload/<%= getRelativeImagePath(daGiao.cart.items[0].productId.Image) %>" alt="">
+                </div>
+            </td>
+            <td style="width: 560px; background-color: white;">                    
+                    <p style="font-weight: bold; font-size: 22px; color: black;">
+                        <a style="color: navy;" href="/ctsp?idCTSP=<%= daGiao.cart.items[0].productId._id %>"><%= daGiao.cart.items[0].productId.TenSP %></a>
+                    </p>
+                    
+                    <% if (daGiao.cart.items.length > 1) { %>
+                        <p style="font-size: 16px;color: rgb(80, 80, 80);">và <%= daGiao.cart.items.length - 1 %> sản phẩm khác</p>
+                    <% } %>
+
+                    <% if (daGiao.TinhTrangDonHang == 'Chưa giao hàng') { %>
+                    <span style="
+                        background-color: rgb(255, 234, 234);                                             
+                        padding: 8px 10px;
+                        width: 190px;
+                        border: none;
+                        font-size: 16px;
+                        color: rgb(255, 0, 0);                            
+                    "class="text-danger ">
+                        <i data-status="pending" class="fas fa-shopping-cart" style="font-size: 16px; color: rgb(22, 15, 1);"></i>
+                        &nbsp;
+                        <%= daGiao.TinhTrangDonHang %>
+                    </span>
+
+                    <% } else if (daGiao.TinhTrangDonHang == 'Đang giao hàng') { %>
+                    <span style="
+                        background-color: rgb(255, 217, 0);                                             
+                        padding: 5px 10px;
+                        width: 170px;
+                        border: 2px solid rgb(255, 217, 0);
+                        font-size: 16px;
+                        color: black;
+                ">
+                    <i data-status="shipping" class="fas fa-truck" style="font-size: 16px; color: rgb(0, 0, 0);"></i>
+                    &nbsp;
+                    <%= daGiao.TinhTrangDonHang %>
+                    </span>
+
+                    <% } else { %>
+                    <span style="
+                            background-color: rgb(209, 255, 209);                                             
+                            padding: 5px 10px;
+                            width: 150px;
+                            border: 2px solid  rgb(209, 255, 209);
+                            font-size: 16px;
+                            color: rgb(0, 128, 9);
+                    ">
+                        <i data-status="delivered" class="fas fa-check-circle" style="font-size: 16px; color: rgb(0, 0, 0);"></i>
+                        &nbsp;
+                        <%= daGiao.TinhTrangDonHang %>
+                    </span>
+
+                    <% } %>                        
+
+                    &nbsp; &&
+                    <% if (daGiao.TinhTrangThanhToan == 'Chưa Thanh Toán') { %>
+                    <span style=" padding: 10px 0 0 10px;                                                                               
+                        border: 1px solid red;
+                        color: red;
+                        border: none;
+                        font-size: 17px;
+                        text-decoration: underline;
+                        font-style: italic;
+                    ">                          
+                      <%= daGiao.TinhTrangThanhToan %>
+                    </span>
+
+                    <% } else { %>
+                    <span style=" 
+                        padding: 10px 0 0 10px;                                                                                                                           
+                        color: rgb(18, 190, 32);
+                        border: none;
+                        font-size: 17px;
+                        text-decoration: underline;
+                        font-style: italic;
+                    ">
+                        <%= daGiao.TinhTrangThanhToan %>
+                    </span>
+
+                    <% } %>
+                    
+                    
+                <p style="font-weight: bold; font-size: 20px; color: rgb(255, 0, 0); position: relative;top: 20px; left: 30px;">
+                    <%= formatCurrency( daGiao.cart.items[0].productId.GiaBan * daGiao.cart.items[0].qty ) %>
+                </p>
+               
+            </td>
+            <td style="width: 380px; background-color: white;">
+                <div style="position: relative; top: 60px; float: right; right: 20px;">
+                    <form action="" style="display: inline-block; margin-left: 10px;">
+                        <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
+                    </form>
+                    <a href="/chi-tiet-dh?xemcthd=<%= daGiao._id %>" class="btn btn-success" style="display: inline-block;">Xem chi tiết hóa đơn</a>
+                </div> 
+            </td>
+            
+        </tr>
+        <% }); %> 
+        <% } else { %>
+            <p>Chưa có sản phẩm nào</p>
+        <% } %>
+
+    </table>
     </div>
   </div>
 

@@ -102,7 +102,7 @@ const {
     hienThiFormUpdate_TKKH, 
     postUpdate_TKKH 
 } = require('../controllers/homeAdminQLTK_KHController');
-const { hienThiFormHistoryOrder } = require('../controllers/orderHistoryController');
+const { hienThiFormHistoryOrder, getChiTietHD } = require('../controllers/orderHistoryController');
 
 const router = express.Router();
 //  -------------------------------------------
@@ -242,6 +242,8 @@ router.post("/dat-hang", handleDatHang)
 
 // lich su don dat hang
 router.get("/order-history", hienThiFormHistoryOrder)
+// chi tiet don hang
+router.get("/chi-tiet-dh", getChiTietHD)
 
 module.exports = router;
 

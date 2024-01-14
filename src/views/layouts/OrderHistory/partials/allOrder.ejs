@@ -1,54 +1,111 @@
 <div class="tab-pane fade show active" id="pills-company" role="tabpanel" aria-labelledby="pills-company-tab">
-    <div class="container-fluid">
-      <!-- <h2 class="mb-3 font-weight-bold">Tất cả</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor leo nec ligula viverra, quis facilisis nunc vehicula. Maecenas purus orci, efficitur in dapibus vel, rutrum in massa. Sed auctor urna sit amet eros mattis interdum. Integer imperdiet ante in quam lacinia, a laoreet risus imperdiet. Ut a blandit elit, vitae volutpat nunc. Nam posuere urna sagittis lectus eleifend viverra. Quisque mauris nunc, viverra vitae sodales non, auctor in diam. Sed dignissim pulvinar sapien sed fermentum. Praesent interdum turpis ut neque tristique ornare. Nam dictum est sed sem elementum rutrum. Nam a mollis turpis.</p>
-      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam tempus ac est convallis accumsan. Donec rhoncus condimentum leo nec cursus. Fusce a ornare nisl, id fermentum sem. Praesent pretium dui magna, in aliquam lectus tempor sed. Donec maximus lectus quis vehicula gravida. Proin odio nisi, aliquet ac ipsum quis, auctor semper leo. Curabitur vitae justo vel augue varius cursus non quis est. Nunc vulputate nunc nibh, sed tempus erat tincidunt eget. Duis a lacus at nulla porttitor tincidunt. Vestibulum euismod elementum mi ut tincidunt. Suspendisse tempus, mi et imperdiet maximus, est turpis placerat massa, at venenatis sem elit ut ex. Donec non aliquam odio. Curabitur ut leo vitae magna lobortis accumsan. Phasellus viverra eu leo non rhoncus.</p>
-      <p>Pellentesque rutrum sit amet nunc sit amet faucibus. Ut id arcu tempus, varius erat et, ornare libero. In quis felis nunc. Aliquam euismod lacus a eros ornare, ut aliquam sem mattis. Cras non varius dui, quis commodo ante. Maecenas gravida est non nulla malesuada egestas. Proin tincidunt eros et lacus sodales lobortis.</p> -->
+    <div class="container-fluid">      
         <table>
-            <tr style="width: 100%; border-bottom: 20px solid rgb(245, 245, 245);">
+            <% all.forEach(function(all, index) { %>  
+            <tr style="width: 100%; border-bottom: 20px solid rgb(245, 245, 245);">   
+
                 <td style="width: 200px; background-color: white; ">
-                    <div style="background-color: beige; ">
-                        <img width="200" height="200" src="images/upload/Poggio-Le-Volpi-Roma-DOC-rosso-1703359722948.jpg" alt="">
+                    <div style="background-color: rgb(255, 255, 255); ">
+                        <img width="180" height="200" src="images/upload/<%= getRelativeImagePath(all.cart.items[0].productId.Image) %>" alt="">
                     </div>
                 </td>
-                <td style="width: 660px; background-color: white;">
-                    
+                <td style="width: 560px; background-color: white;">                    
                         <p style="font-weight: bold; font-size: 22px; color: black;">
-                            <a style="color: navy;" href="#">Rượu Whisky Chivas Regal Ultis 1 Lít/40%</a>
+                            <a style="color: navy;" href="/ctsp?idCTSP=<%= all.cart.items[0].productId._id %>"><%= all.cart.items[0].productId.TenSP %></a>
                         </p>
-                        <p style="font-size: 18px;">và 10 sản phẩm khác</p>
+                        
+                        <% if (all.cart.items.length > 1) { %>
+                            <p style="font-size: 16px;color: rgb(80, 80, 80);">và <%= all.cart.items.length - 1 %> sản phẩm khác</p>
+                        <% } %>
+
+                        <% if (all.TinhTrangDonHang == 'Chưa giao hàng') { %>
                         <span style="
                             background-color: rgb(255, 234, 234);                                             
-                            padding: 10px 15px;
+                            padding: 8px 10px;
                             width: 190px;
                             border: none;
                             font-size: 16px;
-                            color: rgb(255, 0, 0);
-                            
+                            color: rgb(255, 0, 0);                            
                         "class="text-danger ">
                             <i data-status="pending" class="fas fa-shopping-cart" style="font-size: 16px; color: rgb(22, 15, 1);"></i>
                             &nbsp;
-                            Chưa giao hàng
+                            <%= all.TinhTrangDonHang %>
                         </span>
+
+                        <% } else if (all.TinhTrangDonHang == 'Đang giao hàng') { %>
+                        <span style="
+                            background-color: rgb(255, 217, 0);                                             
+                            padding: 5px 10px;
+                            width: 170px;
+                            border: 2px solid rgb(255, 217, 0);
+                            font-size: 16px;
+                            color: black;
+                    ">
+                        <i data-status="shipping" class="fas fa-truck" style="font-size: 16px; color: rgb(0, 0, 0);"></i>
+                        &nbsp;
+                        <%= all.TinhTrangDonHang %>
+                        </span>
+
+                        <% } else { %>
+                        <span style="
+                                background-color: rgb(209, 255, 209);                                             
+                                padding: 5px 10px;
+                                width: 150px;
+                                border: 2px solid  rgb(209, 255, 209);
+                                font-size: 16px;
+                                color: rgb(0, 128, 9);
+                        ">
+                            <i data-status="delivered" class="fas fa-check-circle" style="font-size: 16px; color: rgb(0, 0, 0);"></i>
+                            &nbsp;
+                            <%= all.TinhTrangDonHang %>
+                        </span>
+
+                        <% } %>                        
+
                         &nbsp; &&
+                        <% if (all.TinhTrangThanhToan == 'Chưa Thanh Toán') { %>
                         <span style=" padding: 10px 0 0 10px;                                                                               
-                          border: 1px solid red;
-                          color: red;
-                          border: none;
-                          font-size: 18px;
-                          font-style: italic;
+                            border: 1px solid red;
+                            color: red;
+                            border: none;
+                            font-size: 17px;
+                            text-decoration: underline;
+                            font-style: italic;
                         ">                          
-                          Chưa thanh toán 
-                      </span>
-                      <p style="font-weight: bold; font-size: 20px; color: rgb(255, 0, 0); position: relative;top: 20px; left: 30px;">123.456.789 đ</p>
+                          <%= all.TinhTrangThanhToan %>
+                        </span>
+
+                        <% } else { %>
+                        <span style=" 
+                            padding: 10px 0 0 10px;                                                                                                                           
+                            color: rgb(18, 190, 32);
+                            border: none;
+                            font-size: 17px;
+                            text-decoration: underline;
+                            font-style: italic;
+                        ">
+                            <%= all.TinhTrangThanhToan %>
+                        </span>
+
+                        <% } %>
+                        
+                        
+                    <p style="font-weight: bold; font-size: 20px; color: rgb(255, 0, 0); position: relative;top: 20px; left: 30px;">
+                        <%= formatCurrency( all.cart.items[0].productId.GiaBan * all.cart.items[0].qty ) %>
+                    </p>
                    
                 </td>
-                <td style="width: 280px; background-color: white;">
+                <td style="width: 380px; background-color: white;">
                     <div style="position: relative; top: 60px; float: right; right: 20px;">
-                        <a href="#" class="btn btn-success" >Xem chi tiết hóa đơn</a>
-                    </div>
+                        <form action="" style="display: inline-block; margin-left: 10px;">
+                            <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
+                        </form>
+                        <a href="/chi-tiet-dh?xemcthd=<%= all._id %>" class="btn btn-success" style="display: inline-block;">Xem chi tiết hóa đơn</a>
+                    </div>                    
                 </td>
+                
             </tr>
+            <% }); %> 
 
 
         </table>
