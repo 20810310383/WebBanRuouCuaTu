@@ -123,6 +123,7 @@ module.exports = {
         console.log("id huy don hang: ",id_huydonhang);
 
         let timHDCanHuy = await HoaDon.findOne({_id: id_huydonhang})
+
         let luuHuyHD = await HuyDonHang.create({
             HoTen: timHDCanHuy.HoTen,
             QuocGia: timHDCanHuy.QuocGia,
@@ -144,8 +145,8 @@ module.exports = {
 
         if(luuHuyHD){
             await HoaDon.deleteOne({_id: id_huydonhang});
-            res.redirect("/order-history")
-            res.status(201).json({ success: true, message: 'Bạn Đã Hủy Đơn Hàng Thành Công' });
+            return res.redirect("/order-history")
+            // res.status(201).json({ success: true, message: 'Bạn Đã Hủy Đơn Hàng Thành Công' });
         } else {
             res.status(500).json({ success: false, message: 'Hủy Đơn Hàng thất bại' });
         }
