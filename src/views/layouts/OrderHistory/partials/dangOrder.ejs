@@ -98,9 +98,15 @@
             </td>
             <td style="width: 380px; background-color: white;">
                 <div style="position: relative; top: 60px; float: right; right: 20px;">
-                    <form action="" style="display: inline-block; margin-left: 10px;">
-                        <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
-                    </form>
+                    <% if (dangGiao.TinhTrangDonHang == 'Chưa giao hàng' || dangGiao.TinhTrangDonHang == 'Đang giao hàng') { %>
+                        <!-- Code to execute when condition1 is true -->
+                        <form action="/huy-don-hang" method="get" style="display: inline-block; margin-left: 10px;">
+                            <input type="hidden" name="huydonhang" value="<%= dangGiao._id %>">
+                            <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
+                        </form>
+                    <% } else { %>
+                        <!-- Code to execute when none of the conditions are true -->
+                    <% } %>   
                     <a href="/chi-tiet-dh?xemcthd=<%= dangGiao._id %>" class="btn btn-success" style="display: inline-block;">Xem chi tiết hóa đơn</a>
                 </div> 
             </td>

@@ -1,25 +1,25 @@
-<div class="tab-pane fade" id="pills-product" role="tabpanel" aria-labelledby="pills-product-tab">
+<div class="tab-pane fade" id="huyDH-contact" role="tabpanel" aria-labelledby="pills-huyDH-tab">
     <div class="container-fluid">
       <table>
-        <% if (chuaGiao.length > 0) { %>
-        <% chuaGiao.forEach(function(chuaGiao, index) { %>  
+        <% if (daHuy.length > 0) { %>
+        <% daHuy.forEach(function(daHuy, index) { %>  
         <tr style="width: 100%; border-bottom: 20px solid rgb(245, 245, 245);">   
 
             <td style="width: 200px; background-color: white; ">
                 <div style="background-color: rgb(255, 255, 255); ">
-                    <img width="180" height="200" src="images/upload/<%= getRelativeImagePath(chuaGiao.cart.items[0].productId.Image) %>" alt="">
+                    <img width="180" height="200" src="images/upload/<%= getRelativeImagePath(daHuy.cart.items[0].productId.Image) %>" alt="">
                 </div>
             </td>
             <td style="width: 560px; background-color: white;">                    
                     <p style="font-weight: bold; font-size: 22px; color: black;">
-                        <a style="color: navy;" href="/ctsp?idCTSP=<%= chuaGiao.cart.items[0].productId._id %>"><%= chuaGiao.cart.items[0].productId.TenSP %></a>
+                        <a style="color: navy;" href="/ctsp?idCTSP=<%= daHuy.cart.items[0].productId._id %>"><%= daHuy.cart.items[0].productId.TenSP %></a>
                     </p>
                     
-                    <% if (chuaGiao.cart.items.length > 1) { %>
-                        <p style="font-size: 16px;color: rgb(80, 80, 80);">và <%= chuaGiao.cart.items.length - 1 %> sản phẩm khác</p>
+                    <% if (daHuy.cart.items.length > 1) { %>
+                        <p style="font-size: 16px;color: rgb(80, 80, 80);">và <%= daHuy.cart.items.length - 1 %> sản phẩm khác</p>
                     <% } %>
 
-                    <% if (chuaGiao.TinhTrangDonHang == 'Chưa giao hàng') { %>
+                    <% if (daHuy.TinhTrangDonHang == 'Chưa giao hàng') { %>
                     <span style="
                         background-color: rgb(255, 234, 234);                                             
                         padding: 8px 10px;
@@ -30,10 +30,10 @@
                     "class="text-danger ">
                         <i data-status="pending" class="fas fa-shopping-cart" style="font-size: 16px; color: rgb(22, 15, 1);"></i>
                         &nbsp;
-                        <%= chuaGiao.TinhTrangDonHang %>
+                        <%= daHuy.TinhTrangDonHang %>
                     </span>
 
-                    <% } else if (chuaGiao.TinhTrangDonHang == 'Đang giao hàng') { %>
+                    <% } else if (daHuy.TinhTrangDonHang == 'Đang giao hàng') { %>
                     <span style="
                         background-color: rgb(255, 217, 0);                                             
                         padding: 5px 10px;
@@ -44,7 +44,7 @@
                 ">
                     <i data-status="shipping" class="fas fa-truck" style="font-size: 16px; color: rgb(0, 0, 0);"></i>
                     &nbsp;
-                    <%= chuaGiao.TinhTrangDonHang %>
+                    <%= daHuy.TinhTrangDonHang %>
                     </span>
 
                     <% } else { %>
@@ -58,13 +58,13 @@
                     ">
                         <i data-status="delivered" class="fas fa-check-circle" style="font-size: 16px; color: rgb(0, 0, 0);"></i>
                         &nbsp;
-                        <%= chuaGiao.TinhTrangDonHang %>
+                        <%= daHuy.TinhTrangDonHang %>
                     </span>
 
                     <% } %>                        
 
                     &nbsp; &&
-                    <% if (chuaGiao.TinhTrangThanhToan == 'Chưa Thanh Toán') { %>
+                    <% if (daHuy.TinhTrangThanhToan == 'Chưa Thanh Toán') { %>
                     <span style=" padding: 10px 0 0 10px;                                                                               
                         border: 1px solid red;
                         color: red;
@@ -73,7 +73,7 @@
                         text-decoration: underline;
                         font-style: italic;
                     ">                          
-                      <%= chuaGiao.TinhTrangThanhToan %>
+                      <%= daHuy.TinhTrangThanhToan %>
                     </span>
 
                     <% } else { %>
@@ -85,29 +85,20 @@
                         text-decoration: underline;
                         font-style: italic;
                     ">
-                        <%= chuaGiao.TinhTrangThanhToan %>
+                        <%= daHuy.TinhTrangThanhToan %>
                     </span>
 
                     <% } %>
                     
                     
                 <p style="font-weight: bold; font-size: 20px; color: rgb(255, 0, 0); position: relative;top: 10px; left: 30px;">
-                    <%= formatCurrency( chuaGiao.cart.items[0].productId.GiaBan * chuaGiao.cart.items[0].qty ) %>
+                    <%= formatCurrency( daHuy.cart.items[0].productId.GiaBan * daHuy.cart.items[0].qty ) %>
                 </p>
                
             </td>
             <td style="width: 380px; background-color: white;">
-                <div style="position: relative; top: 60px; float: right; right: 20px;">
-                    <% if (chuaGiao.TinhTrangDonHang == 'Chưa giao hàng' || chuaGiao.TinhTrangDonHang == 'Đang giao hàng') { %>
-                        <!-- Code to execute when condition1 is true -->
-                        <form action="/huy-don-hang" method="get" style="display: inline-block; margin-left: 10px;">
-                            <input type="hidden" name="huydonhang" value="<%= chuaGiao._id %>">
-                            <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
-                        </form>
-                    <% } else { %>
-                        <!-- Code to execute when none of the conditions are true -->
-                    <% } %>   
-                    <a href="/chi-tiet-dh?xemcthd=<%= chuaGiao._id %>" class="btn btn-success" style="display: inline-block;">Xem chi tiết hóa đơn</a>
+                <div style="position: relative; top: 60px; float: right; right: 20px;"> 
+                    <a href="/chi-tiet-dh-da-huy?xemchitiet_HDon_DaHuy=<%= daHuy._id %>" class="btn btn-success" style="display: inline-block;">Xem chi tiết hóa đơn</a>
                 </div> 
             </td>
             
@@ -128,7 +119,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      var chua = document.getElementById("pills-product-tab");
+      var chua = document.getElementById("pills-huyDH-tab");
       var loader = document.getElementById("loader");
   
       chua.addEventListener("click", function (event) {

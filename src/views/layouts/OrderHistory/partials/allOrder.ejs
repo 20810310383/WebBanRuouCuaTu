@@ -1,6 +1,7 @@
 <div class="tab-pane fade show active" id="pills-company" role="tabpanel" aria-labelledby="pills-company-tab">
-    <div class="container-fluid">      
+    <div class="container-fluid">     
         <table>
+            <% if (all.length > 0) { %>
             <% all.forEach(function(all, index) { %>  
             <tr style="width: 100%; border-bottom: 20px solid rgb(245, 245, 245);">   
 
@@ -97,18 +98,28 @@
                 </td>
                 <td style="width: 380px; background-color: white;">
                     <div style="position: relative; top: 60px; float: right; right: 20px;">
-                        <form action="" style="display: inline-block; margin-left: 10px;">
-                            <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
-                        </form>
+                        <% if (all.TinhTrangDonHang == 'Chưa giao hàng' || all.TinhTrangDonHang == 'Đang giao hàng') { %>
+                            <!-- Code to execute when condition1 is true -->
+                            <form action="/huy-don-hang" method="get" style="display: inline-block; margin-left: 10px;" class="form-huy-donhang">
+                                <input type="hidden" name="huydonhang" value="<%= all._id %>">
+                                <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
+                            </form>
+                        <% } else { %>
+                            <!-- Code to execute when none of the conditions are true -->
+                        <% } %>                                                
                         <a href="/chi-tiet-dh?xemcthd=<%= all._id %>" class="btn btn-success" style="display: inline-block;">Xem chi tiết hóa đơn</a>
                     </div>                    
                 </td>
                 
             </tr>
             <% }); %> 
-
+            <% } else { %>
+                <p>Chưa có sản phẩm nào</p>
+            <% } %>
 
         </table>
+
+
     </div>
   </div>
 
@@ -134,3 +145,6 @@
       });
     });
   </script>
+
+
+
