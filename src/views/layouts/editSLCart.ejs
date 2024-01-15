@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Liquor Store KT- Khắc Tú</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="images/logo-KTT1.ico" type="image/x-icon">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oL7JN3KMWF6dy0wKXPsej4lM4PUn3SLDuiZJ+LUEO4A=" crossorigin="anonymous"></script>
+<!-- Thêm Font Awesome vào trang của bạn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-3g8Q4Qlp6TZL5n6DYlG1RW9SI7YoETqfB9t1SzkMO4M4iQOi+ElW2mPnpWQakfah" crossorigin="anonymous">
+
+    <style>
+      .nav-item.dropdown .nav-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-item.dropdown .dropdown-toggle {
+        order: 2; /* Đặt thứ tự xuất hiện cuối cùng */
+        margin-left: 5px; /* Thêm khoảng cách giữa chữ và biểu tượng */
+      }
+
+
+
+
+    </style>
+
+  </head>
+  <body>
+
+    <!-- START login header -->
+    <%- include('../partials/loginHeader.ejs') %>
+    <!-- END login header -->
+
+  	<!-- START nav - header -->
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+              <a class="navbar-brand" href="/home">Liquor <span>store KT</span></a>
+  
+              <!-- gio hang o day -->
+              <%- include('../partials/headerGioHang.ejs') %>
+      
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+              </button>
+      
+              <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item "><a href="/home" class="nav-link">Home</a></li>
+                  <li class="nav-item" ><a href="about.html" class="nav-link">About</a></li>
+                  <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle active" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sản Phẩm</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">				
+                        <a class="dropdown-item" href="/search-sp">Sản Phẩm Rượu</a>
+                        <!-- <a class="dropdown-item" href="product-single.html">Single Product</a>
+                        <a class="dropdown-item" href="cart.html">Cart</a>
+                        <a class="dropdown-item" href="checkout.html">Checkout</a> -->
+                    </div>
+                    </li>
+                  <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+              <li class="nav-item ">
+              <a class="nav-link" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i  class="fa fa-search" title="Tìm Kiếm"></i>
+              </a>
+              <div class="dropdown-menu" style="margin-left: 400px;" aria-labelledby="dropdown05">
+                
+                <%- include('../partials/searchSP.ejs') %>
+      
+              </div>
+                    </li>
+      
+                </ul>
+              </div>
+        </div>
+      </nav>
+      <!-- END nav -->
+      <!-- END nav - header -->
+
+    <!-- START slide -->
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate mb-5 text-center">
+                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="/home">Home <i class="fa fa-chevron-right"></i></a></span> <span>Cart <i class="fa fa-chevron-right"></i></span></p>
+              <h2 class="mb-0 bread">Chỉnh sửa số lượng sản phẩm</h2>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- END slide -->
+
+    <!-- START BODY --  CT CART -->
+    <section class="ftco-section">
+        
+    	<div class="container">
+    		<div class="row">
+    			<div class="table-wrap">
+						<table class="table">
+						  <thead class="thead-primary">
+						    <tr>                   
+                                <th style="text-align: center; vertical-align: middle;">Image</th>
+                                <th style="text-align: center; vertical-align: middle;">Sản Phẩm</th>
+                                <th style="text-align: center; vertical-align: middle;">Giá Bán</th>
+                                <th style="text-align: center; vertical-align: middle; ">Số Lượng</th>
+                                <th style="text-align: center; vertical-align: middle;">Thao Tác</th>
+						    </tr>
+						  </thead>
+                          <tbody>
+                            <form action="/update-mot-sp-trong-cart" method="post" style="display: inline;">      
+                              <input type="hidden" name="idupdateCart" value="<%= updatedCartItem._id %>">
+                                <td>
+                                    <div class="img" style="background-image: url('images/upload/<%= getRelativeImagePath(updatedCartItem.productId.Image) %>');"></div>
+                                </td>
+                                <td>
+                                  <div class="email">
+                                    <span><%= updatedCartItem.productId.TenSP %></span>
+                                    <span><%= updatedCartItem.productId.MoTa %></span>
+                                </div>
+                                </td>
+                                <td style="font-size: 20px;"><%= formatCurrency(updatedCartItem.productId.GiaBan) %></td>
+                                <td  class="quantity">
+                                    <div class="input-group" style="display: flex; justify-content: space-between;align-items: center; width: 100px; ">
+                                        
+                                        <input  style="font-size: 20px;display: flex;align-items: center;justify-content: center;" type="number" id="quantity" name="quantity" class="quantity form-control input-number" value="<%= updatedCartItem.qty %>" min="1" max="100">
+                                        
+                                       
+                                    </div>
+				                        </td>
+                                <td style="text-align: center;">
+                                                                      
+                                    <button type="submit" style="border: none; background-color: white; cursor: pointer;" title="update">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="30" width="60" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#36b300" d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/></svg>                                        
+                                    </button>
+                                </td>
+                              </form>
+                          </tbody>
+						</table>
+					</div>
+    		</div>
+    		
+    	</div>
+        
+    </section>
+    <!-- END BODY --  CT CART -->
+
+
+    <!-- START footer -->
+    <%- include('../partials/footer.ejs') %>
+    <!-- END footer -->
+    
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        // rút gọn file ảnh chỉ lấy tên ảnh, ví dụ: abc.png
+        function getRelativeImagePath(absolutePath) {
+                const rootPath = '<%= rootPath.replace(/\\/g, "\\\\") %>';
+                const relativePath = absolutePath ? absolutePath.replace(rootPath, '').replace(/\\/g, '/').replace(/^\/?images\/upload\//, '') : '';
+                return relativePath;
+            }
+
+        // format tiền tệ
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+        }
+       
+    </script>
+    
+
+  </body>
+</html>

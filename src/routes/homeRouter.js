@@ -61,6 +61,8 @@ const {
     getCartInfo,
     getCTCart,
     removeACTCart,
+    getEditSLCart,
+    updateSL_Mot_SPTrongCart,
     
 } = require("../controllers/addToCartController")
 
@@ -230,7 +232,10 @@ router.get('/cart-info', getCartInfo)
 router.get('/detail-cart', getCTCart)
 // xóa 1 san pham trong chi tiet cart
 router.post('/delete-detail-cart', removeACTCart)
-
+// form edit so luong cart
+router.get('/edit-qty-cart', getEditSLCart)
+// update so luong cart
+router.post('/update-mot-sp-trong-cart', updateSL_Mot_SPTrongCart)
 
 
 // checkout and dat hang

@@ -179,7 +179,6 @@ module.exports = {
 
         let xemchitiet_HDon_DaHuy = req.query.xemchitiet_HDon_DaHuy
         let chitietHDDaHuy = await HuyDonHang.findById(xemchitiet_HDon_DaHuy).populate('cart.items.productId')        
-
         
         // convert ngày giờ theo VN
         function convertToVietnamTime(utcDateString) {

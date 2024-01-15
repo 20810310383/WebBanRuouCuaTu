@@ -78,9 +78,13 @@ module.exports = {
                 });
             }
     
+            // // Cập nhật tổng số lượng và tổng tiền
+            // cart.cart.totalQuaty += qty;
+            // cart.cart.totalPrice += product.GiaBan * qty;
+
             // Cập nhật tổng số lượng và tổng tiền
-            cart.cart.totalQuaty += qty;
-            cart.cart.totalPrice += product.GiaBan * qty;
+            cart.cart.totalQuaty = cart.cart.items.reduce((total, item) => total + item.qty, 0);
+            cart.cart.totalPrice = cart.cart.items.reduce((total, item) => total + (item.qty * product.GiaBan), 0);
     
             // Lưu cart vào session nếu user không đăng nhập
             if (!customerAccountId) {
@@ -249,5 +253,66 @@ module.exports = {
             console.error('Lỗi xóa sản phẩm:', error);
             return res.status(500).json({ error: 'Internal server error' });
         }
-    },         
+    },   
+    
+    getEditSLCart: async (req, res) => {
+        var sessions = req.session;
+        let taikhoan = sessions.taikhoan
+        let loggedIn = sessions.loggedIn
+        let hoten = sessions.hoten
+
+        // Hàm để định dạng số tiền thành chuỗi có ký tự VND
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+        }
+
+        // edit file img
+        function getRelativeImagePath(absolutePath) {
+            const rootPath = '<%= rootPath.replace(/\\/g, "\\\\") %>';
+            const relativePath = absolutePath ? absolutePath.replace(rootPath, '').replace(/\\/g, '/').replace(/^\/?images\/upload\//, '') : '';
+            return relativePath;
+        }
+
+        const customerAccountId = req.session.userId;
+        let idSuaQty = req.query.idSuaQty
+        // tim cai gio hang dua vao MaKH trc tien
+        let timCart = await Cart.findOne({MaTKKH: customerAccountId}).populate('cart.items.productId')
+        const updatedCartItem = timCart.cart.items.find(item => item._id.toString() === idSuaQty);
+
+
+        res.render("layouts/editSLCart.ejs", {
+            formatCurrency: formatCurrency, 
+            rootPath: '/', 
+            getRelativeImagePath: getRelativeImagePath,
+            logIn: loggedIn, 
+            taikhoan, hoten,
+            updatedCartItem
+        })
+
+    },
+
+    updateSL_Mot_SPTrongCart: async (req, res) => {
+        const quantityy = req.body.quantity;
+        let idupdateCart = req.body.idupdateCart
+
+        const customerAccountId = req.session.userId;
+        // Tìm cai gio hang dua vao MaKH trc tien
+        let timCart = await Cart.findOne({ MaTKKH: customerAccountId }).populate('cart.items.productId');
+
+        // Tìm sản phẩm cần cập nhật trong mảng items dựa trên _id
+        const updatedCartItem = timCart.cart.items.find(item => item._id.toString() === idupdateCart);
+
+        if (updatedCartItem) {
+            // Cập nhật qty
+            updatedCartItem.qty = quantityy;
+
+            // Lưu lại dữ liệu đã chỉnh sửa
+            await timCart.save();
+
+            console.log('Số lượng sản phẩm đã được cập nhật thành công.');
+            return res.redirect('detail-cart')
+        } else {
+            console.log('Không tìm thấy sản phẩm cần cập nhật trong giỏ hàng.');
+        }
+    },
 }
